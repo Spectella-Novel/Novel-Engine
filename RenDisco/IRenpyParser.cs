@@ -10,13 +10,13 @@ namespace RenDisco {
         /// </summary>
         /// <param name="filePath">Path to the Ren'Py script file.</param>
         /// <returns>A list of RenpyCommand objects representing the script.</returns>
-        public List<Command> ParseFromFile(string filePath);
+        public List<Instruction> ParseFromFile(string filePath);
         
         /// <summary>
         /// Parses Ren'Py script code from a string.
         /// </summary>
         /// <param name="rpyCode">The Ren'Py script code as a string.</param>
         /// <returns>A list of RenpyCommand objects representing the script.</returns>
-        public List<Command> Parse(string rpyCode);
+        public List<Instruction> Parse(string rpyCode);
     }
 }

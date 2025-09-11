@@ -1,0 +1,16 @@
+{
+    "name": "rendisco",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3542f95d3053dc747be1d20752c7b1c0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

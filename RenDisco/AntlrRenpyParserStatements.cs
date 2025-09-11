@@ -15,8 +15,8 @@ namespace RenDisco
             return new Label
             {
                 Name = context.IDENT().GetText(),
-                Commands = (context.block() != null) ? 
-                    (List<Command>)Visit(context.block()) : new List<Command>(),
+                Instructions = (context.block() != null) ? 
+                    (List<Instruction>)Visit(context.block()) : new List<Instruction>(),
             };
         }
 
@@ -125,7 +125,7 @@ namespace RenDisco
             var choice = new MenuChoice { OptionText = context.STRING().GetText().Trim('"') };
             if (context.block() != null)
             {
-                choice.Response.AddRange((List<Command>)Visit(context.block()));
+                choice.Response.AddRange((List<Instruction>)Visit(context.block()));
             }
             return choice;
         }
@@ -154,7 +154,7 @@ namespace RenDisco
         {
             var conditional_block = new IfCondition { Condition = context.expression().GetText() };
             conditional_block.Condition = context.expression().GetText();
-            conditional_block.Content = (List<Command>)Visit(context.block());
+            conditional_block.Content = (List<Instruction>)Visit(context.block());
 
             foreach (var elifBlock in context.elif_block())
             {
@@ -172,14 +172,14 @@ namespace RenDisco
         public override object VisitElif_block([NotNull] RenpyParser.Elif_blockContext context)
         {
             var elifCondition = new ElifCondition { Condition = context.expression().GetText() };
-            elifCondition.Content = (List<Command>)Visit(context.block());
+            elifCondition.Content = (List<Instruction>)Visit(context.block());
             return elifCondition;
         }
 
         public override object VisitElse_block([NotNull] RenpyParser.Else_blockContext context)
         {
             var elseCondition = new ElseCondition();
-            elseCondition.Content = (List<Command>)Visit(context.block());
+            elseCondition.Content = (List<Instruction>)Visit(context.block());
             return elseCondition;
         }
 

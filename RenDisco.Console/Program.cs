@@ -131,7 +131,7 @@ label ending:
 
         // 1. Parse the script
         IRenpyParser parser = new AntlrRenpyParser();
-        List<Command> commands = parser.Parse(code);
+        List<Instruction> commands = parser.Parse(code);
 
         // 2. Create the runtime engine
         IRuntimeEngine runtime = new ConsoleRuntimeEngine();
@@ -139,30 +139,30 @@ label ending:
         // 3. Define variables or characters in the runtime engine
         runtime.SetVariable("playerName", "John");   // Example variable
 
-        // 4. Create the Play instance and start the execution
-        Play play = new Play(runtime, commands);
+        //// 4. Create the Play instance and start the execution
+        //Game play = new Game(runtime, commands);
 
-        while (true)
-        {
-            bool res;
+        //while (true)
+        //{
+        //    bool res;
 
-            // Check if we need to read a choice from the user
-            if (play.WaitingForInput)
-            {
-                Console.Write("> ");
-                int.TryParse(Console.ReadLine(), out int userChoice);
+        //    // Check if we need to read a choice from the user
+        //    if (play.WaitingForInput)
+        //    {
+        //        Console.Write("> ");
+        //        int.TryParse(Console.ReadLine(), out int userChoice);
 
-                // Create a StepContext with the user's choice loaded
-                InputContext stepContext = new InputContext(userChoice - 1);
-                res = play.Step(inputContext: stepContext);
-            }
-            else
-            {
-                Console.WriteLine("-");
-                res = play.Step();
-            }
+        //        // Create a StepContext with the user's choice loaded
+        //        InstructionContext stepContext = new InputContext(userChoice - 1);
+        //        res = play.Step(inputContext: stepContext);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("-");
+        //        res = play.Step();
+        //    }
 
-            if (!res) break;
-        }
+        //    if (!res) break;
+        //}
     }
 }
