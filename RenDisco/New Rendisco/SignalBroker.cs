@@ -7,8 +7,7 @@ namespace RenDisco
 {
     public static class SignalBroker
     {
-        private static readonly ConcurrentDictionary<string, ConcurrentBag<Action>> _signalHandlers =
-            new ConcurrentDictionary<string, ConcurrentBag<Action>>();
+        private static readonly ConcurrentDictionary<string, ConcurrentBag<Action<string>>> _signalHandlers = new ();
 
         private static SynchronizationContext _syncContext;
         private static bool _isInitialized = false;
@@ -24,7 +23,6 @@ namespace RenDisco
 
                     _syncContext = syncContext ?? SynchronizationContext.Current ?? new SynchronizationContext();
                     _isInitialized = true;
-                    Console.WriteLine($"Initialized on thread: {Thread.CurrentThread.Name ?? Thread.CurrentThread.ManagedThreadId.ToString()}");
                 }
             }
         }
@@ -45,7 +43,7 @@ namespace RenDisco
         }
 
         // Подписаться на сигнал
-        public static void On(string signal, Action handler)
+        public static void On(string signal, Action<string> handler)
         {
             if (string.IsNullOrEmpty(signal))
                 throw new ArgumentException("Сигнал не может быть пустым");
@@ -56,19 +54,19 @@ namespace RenDisco
             Console.WriteLine("Signal saved: " + signal);
             EnsureInitialized();
 
-            var handlers = _signalHandlers.GetOrAdd(signal, _ => new ConcurrentBag<Action>());
+            var handlers = _signalHandlers.GetOrAdd(signal, _ => new ());
             handlers.Add(handler);
         }
 
         // Отписаться от сигнала
-        public static void Off(string signal, Action handler)
+        public static void Off(string signal, Action<string> handler)
         {
             if (string.IsNullOrEmpty(signal) || handler == null)
                 return;
 
             if (_signalHandlers.TryGetValue(signal, out var handlers))
             {
-                var newHandlers = new ConcurrentBag<Action>();
+                var newHandlers = new ConcurrentBag<Action<string>>();
                 foreach (var h in handlers)
                 {
                     if (h != handler)
@@ -95,18 +93,14 @@ namespace RenDisco
             if (string.IsNullOrEmpty(signal))
                 return;
 
-            Console.WriteLine($"Emit called on thread: {Thread.CurrentThread.Name ?? Thread.CurrentThread.ManagedThreadId.ToString()}");
-            Console.WriteLine("Signal Emit: " + signal);
-
             EnsureInitialized();
 
             if (_signalHandlers.TryGetValue(signal, out var handlers))
             {
-                Console.WriteLine("handlers count: " + handlers.Count);
 
                 // Создаем копию списка для безопасного перебора
-                var handlersList = new List<Action>(handlers);
-                Console.WriteLine($"Found {handlersList.Count} handlers");
+                var handlersList = new List<Action<string>>(handlers);
+
 
                 // Выполняем обработчики
                 foreach (var handler in handlersList)
@@ -116,18 +110,16 @@ namespace RenDisco
                         // Если мы уже в правильном контексте, вызываем напрямую
                         if (_syncContext == null || SynchronizationContext.Current == _syncContext)
                         {
-                            Console.WriteLine("Invoking directly");
-                            handler?.Invoke();
+                            handler?.Invoke(signal);
                         }
                         else
                         {
-                            Console.WriteLine("Posting to sync context");
                             _syncContext.Post(_ =>
                             {
                                 try
                                 {
-                                    Console.WriteLine("Executing handler in sync context");
-                                    handler?.Invoke();
+
+                                    handler?.Invoke(signal);
                                 }
                                 catch (Exception ex)
                                 {

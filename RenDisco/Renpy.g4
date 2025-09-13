@@ -51,6 +51,8 @@ statement:
   | call_def
   | menu_def
   | default_def
+  | show_def
+  | hide_def 
   | return_def
   | assignment
   | dialogue
@@ -93,6 +95,13 @@ call_def:
   'call' IDENT (arguments)?
   ;
 
+show_def:
+  'show' STRING (arguments)?
+  ;
+hide_def:
+  'hide' STRING (arguments)?
+  ;
+  
 menu_def:
   'menu' ':'
   INDENT

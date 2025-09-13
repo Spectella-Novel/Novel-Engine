@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from ./RenDisco/Renpy.g4 by ANTLR 4.13.2
+// Generated from Renpy.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -155,6 +155,30 @@ public partial class RenpyBaseListener : IRenpyListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCall_def([NotNull] RenpyParser.Call_defContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.show_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterShow_def([NotNull] RenpyParser.Show_defContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.show_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitShow_def([NotNull] RenpyParser.Show_defContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.hide_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHide_def([NotNull] RenpyParser.Hide_defContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.hide_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHide_def([NotNull] RenpyParser.Hide_defContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RenpyParser.menu_def"/>.
 	/// <para>The default implementation does nothing.</para>

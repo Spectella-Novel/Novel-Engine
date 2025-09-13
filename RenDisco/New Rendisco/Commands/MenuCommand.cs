@@ -14,9 +14,11 @@ namespace RenDisco.Commands
         {
             var result = new InstructionResult();
             Thread.Sleep(5000);
-            SignalBroker.Emit("Input");
-            var input = (int)WaitableMessageBroker.WaitForMessage("Input");
-            SynchronizationContext.Post(a => Console.WriteLine(input), null);
+
+            SignalBroker.Emit(DefaultSignals.Choice);
+            
+            var input = (int)WaitableMessageBroker.WaitForMessage(DefaultSignals.Choice);
+            
             result.Instructions = Instruction.Choices[input].Response;
             
             return result;

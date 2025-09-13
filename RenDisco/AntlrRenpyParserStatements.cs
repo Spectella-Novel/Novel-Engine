@@ -139,7 +139,10 @@ namespace RenDisco
         {
             return new Return();
         }
-
+        public override object VisitShow_def([NotNull] RenpyParser.Show_defContext context)
+        {
+            return new Show { Image = context.STRING().GetText()};
+        }
         public override object VisitDialogue([NotNull] RenpyParser.DialogueContext context)
         {
             return new Dialogue { Character = context.character_ref().IDENT().GetText(), Text = context.STRING().GetText().Trim('"') };

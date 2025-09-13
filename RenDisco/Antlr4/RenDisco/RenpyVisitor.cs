@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from ./RenDisco/Renpy.g4 by ANTLR 4.13.2
+// Generated from Renpy.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -91,6 +91,18 @@ public interface IRenpyVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitCall_def([NotNull] RenpyParser.Call_defContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.show_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitShow_def([NotNull] RenpyParser.Show_defContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.hide_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHide_def([NotNull] RenpyParser.Hide_defContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="RenpyParser.menu_def"/>.
 	/// </summary>
