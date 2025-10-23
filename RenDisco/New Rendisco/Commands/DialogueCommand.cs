@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class DialogueCommand : Command<Dialogue>
     {
-        public DialogueCommand(Dialogue instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public DialogueCommand(Dialogue instruction) : base(instruction)
         {
         }
     }

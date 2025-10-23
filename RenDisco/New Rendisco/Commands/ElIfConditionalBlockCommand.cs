@@ -9,11 +9,11 @@ namespace RenDisco.Commands
 {
     public class ElIfConditionalBlockCommand : Command<ElifCondition>
     {
-        public ElIfConditionalBlockCommand(ElifCondition instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ElIfConditionalBlockCommand(ElifCondition instruction) : base(instruction)
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             return null;
         }

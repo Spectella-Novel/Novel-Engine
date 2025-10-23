@@ -6,13 +6,13 @@ namespace RenDisco.Commands
 {
     public class MenuCommand : Command<Menu>
     {
-        public MenuCommand(Menu instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public MenuCommand(Menu instruction) : base(instruction)
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
-            var result = new InstructionResult();
+            var result = new ControlFlowSignal();
             Thread.Sleep(5000);
 
             SignalBroker.Emit(DefaultSignals.Choice);

@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class HideCommand : Command<Hide>
     {
-        public HideCommand(Hide instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public HideCommand(Hide instruction) : base(instruction)
         {
         }
     }

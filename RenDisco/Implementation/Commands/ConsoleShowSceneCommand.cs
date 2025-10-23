@@ -14,7 +14,7 @@ namespace RenDisco.Implementation.Commands
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             Console.WriteLine(Instruction.Transition == null ? $"Show Image: {Instruction.Image}" : $"Show Image: {Instruction.Image} with {Instruction.Transition} transition");
             return null;

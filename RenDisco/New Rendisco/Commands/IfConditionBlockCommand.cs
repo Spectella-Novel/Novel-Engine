@@ -5,11 +5,11 @@ namespace RenDisco.Commands
 {
     public class IfConditionBlockCommand : Command<IfCondition>
     {
-        public IfConditionBlockCommand(IfCondition instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public IfConditionBlockCommand(IfCondition instruction) : base(instruction)
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             return null;
         }

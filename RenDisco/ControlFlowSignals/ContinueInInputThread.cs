@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RenDisco;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace RenDisco
 {
-    public class InstructionResult
+    internal class ContinueInInputThread:ControlFlowSignal
     {
-        public Instruction Next;
-        public List<Instruction> Instructions;
     }
 }

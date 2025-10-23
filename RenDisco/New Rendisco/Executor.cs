@@ -1,5 +1,6 @@
 ﻿using RenDisco.Commands;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,13 +15,11 @@ namespace RenDisco
         {
             _factory = commandFactory;
         }
-        public InstructionResult ExecuteCommand(Instruction instruction)
+        public IEnumerable<ControlFlowSignal> GetFlow(Instruction instruction)
         {
             var command = _factory.CreateCommand(instruction);
-            var result = command.Execute();
-
-            return result;
-
+            var flow = command.Flow();
+            return flow;
         }
     }
 }

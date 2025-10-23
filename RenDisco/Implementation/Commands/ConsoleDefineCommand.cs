@@ -14,7 +14,7 @@ namespace RenDisco.Implementation.Commands
         {
         }
 
-        public override InstructionResult Execute() { 
+        public override ControlFlowSignal Flow() { 
 
             Storage.Set(Instruction.Name, Instruction.Value);
             return null;

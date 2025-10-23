@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class PauseCommand : Command<Pause>
     {
-        public PauseCommand(Pause instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public PauseCommand(Pause instruction) : base(instruction)
         {
         }
     }

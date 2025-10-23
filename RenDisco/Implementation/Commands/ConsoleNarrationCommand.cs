@@ -14,7 +14,7 @@ namespace RenDisco.Implementation.Commands
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             Console.WriteLine($"Narration: {Instruction.Text}");
             return null;

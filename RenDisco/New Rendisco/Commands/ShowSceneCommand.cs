@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class ShowSceneCommand : Command<Scene>
     {
-        public ShowSceneCommand(Scene instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ShowSceneCommand(Scene instruction) : base(instruction)
         {
         }
     }

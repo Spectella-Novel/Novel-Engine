@@ -12,7 +12,7 @@ namespace RenDisco.Implementation.Commands
     {
         public ConsoleDialogueCommand(Dialogue instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext) {}
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             
             Console.WriteLine(Instruction.Text);

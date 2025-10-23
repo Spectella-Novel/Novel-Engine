@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class ShowImageCommand : Command<Show>
     {
-        public ShowImageCommand(Show instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ShowImageCommand(Show instruction) : base(instruction)
         {
         }
     }

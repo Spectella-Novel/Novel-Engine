@@ -10,7 +10,6 @@ namespace RenDisco.Commands
     public abstract class CommandFactory
     {
         protected IStorage Storage;
-        protected  SynchronizationContext SynchronizationContext;
         private bool IsInit = false;
 
         protected CommandFactory(IStorage storage)
@@ -18,11 +17,6 @@ namespace RenDisco.Commands
             Storage = storage;
         }
 
-        public void InitContext(SynchronizationContext synchronizationContext)
-        {
-            SynchronizationContext = synchronizationContext;
-            IsInit = true;
-        }
 
         public virtual Command CreateCommand(RenDisco.Instruction command)
         {
@@ -67,27 +61,27 @@ namespace RenDisco.Commands
 
         protected virtual LabelCommand CreateLabelCommand(Label label)
         {
-            return new LabelCommand(label, SynchronizationContext);
+            return new LabelCommand(label);
         }
 
         protected virtual JumpCommand CreateExecuteJumpCommand(Jump jump)
         {
-            return new JumpCommand(jump, SynchronizationContext);
+            return new JumpCommand(jump);
         }
 
         protected virtual MenuCommand CreateExecuteMenuCommand(Menu menu)
         {
-            return new MenuCommand(menu, SynchronizationContext);
+            return new MenuCommand(menu);
         }
 
         protected virtual ElIfConditionalBlockCommand CreateElIfConditionalBlockCommand(ElifCondition elifCondition)
         {
-            return new ElIfConditionalBlockCommand(elifCondition, SynchronizationContext);
+            return new ElIfConditionalBlockCommand(elifCondition);
         }
 
         protected virtual IfConditionBlockCommand CreateIfConditionBlockCommand(IfCondition ifCondition)
         {
-            return new IfConditionBlockCommand(ifCondition, SynchronizationContext);
+            return new IfConditionBlockCommand(ifCondition);
         }
 
         protected abstract DefineCommand CreateDefineCommand(Define define);

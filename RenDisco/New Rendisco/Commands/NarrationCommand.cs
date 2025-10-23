@@ -9,11 +9,11 @@ namespace RenDisco.Commands
 {
     public class NarrationCommand : Command<Narration> 
     {
-        public NarrationCommand(Narration instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public NarrationCommand(Narration instruction) : base(instruction)
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             return null;
         }

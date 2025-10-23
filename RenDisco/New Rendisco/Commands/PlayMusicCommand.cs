@@ -9,7 +9,7 @@ namespace RenDisco.Commands
 {
     public abstract class PlayMusicCommand : Command<PlayMusic>
     {
-        public PlayMusicCommand(PlayMusic instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public PlayMusicCommand(PlayMusic instruction) : base(instruction)
         {
         }
     }

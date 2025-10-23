@@ -9,7 +9,7 @@ namespace RenDisco.Implementation.Commands
     {
         public ConsoleShowImageCommand(Show instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext) { }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             return null;
         }

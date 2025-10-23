@@ -10,7 +10,7 @@ namespace RenDisco.Commands
     public abstract class DefineCommand : Command<Define>
     {
         protected IStorage Storage;
-        public DefineCommand(Define instruction, IStorage storage, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public DefineCommand(Define instruction, IStorage storage) : base(instruction)
         {
             this.Storage = storage;
         }

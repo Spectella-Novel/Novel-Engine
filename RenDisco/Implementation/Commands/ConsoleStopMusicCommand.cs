@@ -14,7 +14,7 @@ namespace RenDisco.Implementation.Commands
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             Console.WriteLine(Instruction.FadeOut == default ? $"Stop Music" : $"Stop Music: with fadeout of {Instruction.FadeOut} second(s)");
             return null;

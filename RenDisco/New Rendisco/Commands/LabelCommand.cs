@@ -9,13 +9,13 @@ namespace RenDisco.Commands
 {
     public class LabelCommand : Command<Label>
     {
-        public LabelCommand(Label instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public LabelCommand(Label instruction) : base(instruction)
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
-            var result = new InstructionResult();
+            var result = new ControlFlowSignal();
             result.Instructions = Instruction.Instructions;
             return result;
         }

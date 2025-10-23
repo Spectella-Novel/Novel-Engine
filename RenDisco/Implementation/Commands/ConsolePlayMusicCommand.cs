@@ -11,7 +11,7 @@ namespace RenDisco.Implementation.Commands
         {
         }
 
-        public override InstructionResult Execute()
+        public override ControlFlowSignal Flow()
         {
             Console.WriteLine(Instruction.FadeIn== default ? $"Play Music: {Instruction.File}" : $"Play Music: {Instruction.File} with fadein of {Instruction.FadeIn} second(s)");
             return null;
