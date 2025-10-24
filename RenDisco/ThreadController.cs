@@ -16,7 +16,7 @@ namespace RenDisco
         }
         public void RememberThread(string threadName)
         {
-            if(_synchronizationContexts.ContainsKey()
+            if(_synchronizationContexts.ContainsKey())
             _synchronizationContexts.Add(threadName, new SynchronizationContext());
         }
     }
