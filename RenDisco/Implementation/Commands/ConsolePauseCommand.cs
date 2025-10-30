@@ -10,11 +10,11 @@ namespace RenDisco.Implementation.Commands
 {
     public class ConsolePauseCommand : PauseCommand
     {
-        public ConsolePauseCommand(Pause instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ConsolePauseCommand(Pause instruction) : base(instruction)
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
 
             Console.WriteLine(Instruction.Duration == default ? $"Pause" : $"Pause: {Instruction.Duration} second(s)");

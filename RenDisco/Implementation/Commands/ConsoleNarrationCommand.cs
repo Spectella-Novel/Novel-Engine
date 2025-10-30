@@ -10,11 +10,11 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleNarrationCommand : NarrationCommand
     {
-        public ConsoleNarrationCommand(Narration instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ConsoleNarrationCommand(Narration instruction) : base(instruction)
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             Console.WriteLine($"Narration: {Instruction.Text}");
             return null;

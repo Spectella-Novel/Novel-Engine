@@ -11,14 +11,11 @@ namespace RenDisco
     public class AsyncStepper
     {
         private Task _gameTask;
-        private SynchronizationContext _syncCtx;
         private GameFlow _game;
         private CancellationTokenSource _cancellationTokenSource;
         public AsyncStepper(List<Instruction> instructions, CommandFactory commandFactory)
         {
             _game = new GameFlow(instructions, commandFactory);
-            _syncCtx = SynchronizationContext.Current;
-            commandFactory.InitContext(_syncCtx);
         }
         public void Start()
         {

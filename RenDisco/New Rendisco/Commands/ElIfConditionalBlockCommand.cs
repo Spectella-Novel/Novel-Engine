@@ -13,7 +13,7 @@ namespace RenDisco.Commands
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             return null;
         }

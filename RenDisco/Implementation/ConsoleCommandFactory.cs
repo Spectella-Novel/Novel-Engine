@@ -11,47 +11,47 @@ namespace RenDisco.Implementation
 
         protected override DefineCommand CreateDefineCommand(Define define)
         {
-            return new ConsoleDefineCommand(define, Storage, SynchronizationContext);
+            return new ConsoleDefineCommand(define, Storage);
         }
 
         protected override DialogueCommand CreateDialogueCommand(Dialogue dialogue)
         {
-            return new ConsoleDialogueCommand(dialogue, SynchronizationContext);
+            return new ConsoleDialogueCommand(dialogue);
         }
 
         protected override HideCommand CreateHideCommand(Hide hide)
         {
-            return new ConsoleHideCommand(hide, SynchronizationContext);
+            return new ConsoleHideCommand(hide);
         }
 
         protected override NarrationCommand CreateNarrationCommand(Narration narration)
         {
-            return new ConsoleNarrationCommand(narration, SynchronizationContext);
+            return new ConsoleNarrationCommand(narration);
         }
 
         protected override PauseCommand CreatePauseCommand(Pause pause)
         {
-            return new ConsolePauseCommand(pause, SynchronizationContext);
+            return new ConsolePauseCommand(pause);
         }
 
         protected override PlayMusicCommand CreatePlayMusicCommand(PlayMusic playMusic)
         {
-            return new ConsolePlayMusicCommand(playMusic, SynchronizationContext);
+            return new ConsolePlayMusicCommand(playMusic);
         }
 
         protected override ShowImageCommand CreateShowImageCommand(Show show)
         {
-            return new ConsoleShowImageCommand(show, SynchronizationContext);
+            return new ConsoleShowImageCommand(show);
         }
 
         protected override ShowSceneCommand CreateShowSceneCommand(Scene scene)
         {
-            return new ConsoleShowSceneCommand(scene, SynchronizationContext);
+            return new ConsoleShowSceneCommand(scene);
         }
 
         protected override StopMusicCommand CreateStopMusicCommand(StopMusic stopMusic)
         {
-            return new ConsoleStopMusicCommand(stopMusic, SynchronizationContext);
+            return new ConsoleStopMusicCommand(stopMusic);
         }
     }
 }

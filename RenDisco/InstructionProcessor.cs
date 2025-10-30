@@ -42,9 +42,11 @@ namespace RenDisco
 
             if (!_currentSignal.MoveNext())
             {
-                GetNextInstruction();
+               var instruction = GetNextInstruction();
+                _currentSignal = getFlow(instruction);
             }
-            return new ControlFlowSignal();
+
+            return _currentSignal.Current;
         }
 
         private void Init()
@@ -57,7 +59,7 @@ namespace RenDisco
 
             var instruction = _instructionContext.Instructions[_instructionContext.InstructionCounter];
 
-            _currentSignal = _executor.GetFlow(instruction).GetEnumerator();
+            _currentSignal = getFlow(instruction);
 
 
             _init = true;
@@ -82,7 +84,7 @@ namespace RenDisco
 
             if (nextInstruction == null) return;
 
-            ExecuteCommand(nextInstruction);
+            getFlow(nextInstruction);
         }
         public bool IsCompleted()
         {
@@ -92,7 +94,7 @@ namespace RenDisco
         /// Executes a single command.
         /// </summary>
         /// <param name="instruction">The command to execute.</param>
-        private void ExecuteCommand(Instruction instruction)
+        private IEnumerator<ControlFlowSignal> getFlow(Instruction instruction)
         {
             if (instruction == null)
             {
@@ -102,8 +104,8 @@ namespace RenDisco
             {
                 _running = false;
             }
-            var instructionResult = ;
-            
+            var flow = _executor.GetFlow(instruction).GetEnumerator();
+            return flow;
         }
 
         private Instruction GetNextInstruction()

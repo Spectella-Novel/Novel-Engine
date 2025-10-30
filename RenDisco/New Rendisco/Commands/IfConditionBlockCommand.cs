@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RenDisco.Commands
@@ -9,7 +10,7 @@ namespace RenDisco.Commands
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             return null;
         }

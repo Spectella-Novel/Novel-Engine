@@ -10,11 +10,11 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleShowSceneCommand : ShowSceneCommand
     {
-        public ConsoleShowSceneCommand(Scene instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ConsoleShowSceneCommand(Scene instruction) : base(instruction)
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             Console.WriteLine(Instruction.Transition == null ? $"Show Image: {Instruction.Image}" : $"Show Image: {Instruction.Image} with {Instruction.Transition} transition");
             return null;

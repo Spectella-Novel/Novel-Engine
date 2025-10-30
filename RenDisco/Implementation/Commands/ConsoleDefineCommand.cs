@@ -10,15 +10,14 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleDefineCommand : DefineCommand
     {
-        public ConsoleDefineCommand(Define instruction, IStorage storage, SynchronizationContext synchronizationContext) : base(instruction, storage, synchronizationContext)
+        public ConsoleDefineCommand(Define instruction, IStorage storage) : base(instruction, storage)
         {
         }
 
-        public override ControlFlowSignal Flow() { 
+        public override IEnumerable<ControlFlowSignal> Flow() { 
 
             Storage.Set(Instruction.Name, Instruction.Value);
             return null;
-
         }
 
         public override void Undo()

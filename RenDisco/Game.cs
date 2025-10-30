@@ -33,7 +33,7 @@ namespace RenDisco {
 
             Parents = new Stack<InstructionContext>();
             Commands = commandsClone;
-
+            _instructionProcessor = new InstructionProcessor(Commands, commandFactory);
             _controlFlowProcessor = new ControlFlowProcessor();
 
         }
@@ -62,6 +62,7 @@ namespace RenDisco {
         //Ниже идет отдельный поток
         private InstructionContext _instructionContext;
         public List<Instruction> Commands;
+        private InstructionProcessor _instructionProcessor;
         private ControlFlowProcessor _controlFlowProcessor;
         private CommandFactory _factory;
         public Stack<InstructionContext> Parents;
@@ -71,12 +72,11 @@ namespace RenDisco {
             var instructions = _instructionContext.Instructions[_instructionContext.InstructionCounter];
 
             var command = _factory.CreateCommand(instructions);
-
             IEnumerator<ControlFlowSignal> commandFlow = command.Flow().GetEnumerator();
             var canNext = commandFlow.MoveNext();
-            while (canNext)
+            while (!_instructionProcessor.IsCompleted())
             {
-                var signal = commandFlow.Current;
+                var signal = _instructionProcessor.GetNextControlSignal();
 
                 _controlFlowProcessor.Process(signal, () =>
                 {

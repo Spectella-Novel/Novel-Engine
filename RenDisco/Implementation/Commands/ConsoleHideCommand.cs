@@ -10,11 +10,11 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleHideCommand : HideCommand
     {
-        public ConsoleHideCommand(Hide instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ConsoleHideCommand(Hide instruction) : base(instruction)
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             Console.WriteLine(Instruction.Transition == null ? $"Hide Image: {Instruction.Image}" : $"Hide Image: {Instruction.Image} with {Instruction.Transition} transition");
             return null;

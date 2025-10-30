@@ -13,11 +13,11 @@ namespace RenDisco.Commands
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             var result = new ControlFlowSignal();
             result.Instructions = Instruction.Instructions;
-            return result;
+            yield return result;
         }
 
         public override void Undo()

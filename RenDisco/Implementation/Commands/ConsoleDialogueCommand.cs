@@ -10,15 +10,14 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleDialogueCommand : DialogueCommand
     {
-        public ConsoleDialogueCommand(Dialogue instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext) {}
+        public ConsoleDialogueCommand(Dialogue instruction) : base(instruction) {}
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             
             Console.WriteLine(Instruction.Text);
             Thread.Sleep(3000);
-            SynchronizationContext.Post(state => { Console.WriteLine(Thread.CurrentThread.Name + " Dialogue"); }, null);
-            return null;
+            yield return null;
         }
 
         public override void Undo(){}

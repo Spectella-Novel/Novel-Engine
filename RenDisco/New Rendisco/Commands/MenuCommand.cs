@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace RenDisco.Commands
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             var result = new ControlFlowSignal();
             Thread.Sleep(5000);
@@ -21,7 +22,7 @@ namespace RenDisco.Commands
             
             result.Instructions = Instruction.Choices[input].Response;
             
-            return result;
+            yield return result;
         }
 
         public override void Undo()

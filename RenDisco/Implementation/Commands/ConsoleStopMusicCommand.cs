@@ -10,11 +10,11 @@ namespace RenDisco.Implementation.Commands
 {
     internal class ConsoleStopMusicCommand : StopMusicCommand
     {
-        public ConsoleStopMusicCommand(StopMusic instruction, SynchronizationContext synchronizationContext) : base(instruction, synchronizationContext)
+        public ConsoleStopMusicCommand(StopMusic instruction) : base(instruction)
         {
         }
 
-        public override ControlFlowSignal Flow()
+        public override IEnumerable<ControlFlowSignal> Flow()
         {
             Console.WriteLine(Instruction.FadeOut == default ? $"Stop Music" : $"Stop Music: with fadeout of {Instruction.FadeOut} second(s)");
             return null;
