@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using RenDisco.Commands;
 using RenDisco.RuntimeException;
 using System;
@@ -67,7 +68,7 @@ namespace RenDisco {
         private CommandFactory _factory;
         public Stack<InstructionContext> Parents;
 
-        public void Workflow()
+        public UniTaskVoid Workflow()
         {
             var instructions = _instructionContext.Instructions[_instructionContext.InstructionCounter];
 
