@@ -1,3 +1,4 @@
+using Codice.Client.BaseCommands.Merge;
 using Cysharp.Threading.Tasks;
 using RenDisco.Commands;
 using RenDisco.RuntimeException;
@@ -13,7 +14,7 @@ using UnityEngine;
 namespace RenDisco {
     public class GameFlow
     {
-      
+        private UniTask<UniTaskVoid> workflowTask;
         private bool _running;
         private CancellationTokenSource _cancellationTokenSource;
         private SynchronizationContext _syncContext;
@@ -30,27 +31,19 @@ namespace RenDisco {
             _instructionContext.InstructionCounter = 0;
             _instructionContext.Instructions = commandsClone;
             _factory = commandFactory;
-            _running = true;
 
             Parents = new Stack<InstructionContext>();
             Commands = commandsClone;
             _instructionProcessor = new InstructionProcessor(Commands, commandFactory);
-            _controlFlowProcessor = new ControlFlowProcessor();
-
-        }
-        
-        public void Start()
-        {
-            if (_running)  return; 
-            
-            _syncContext = SynchronizationContext.Current;
-
-            _controlFlowProcessor.Register<ContinueInInputThread>(new ContinueInInputThreadHandler(_syncContext)); // условно синхронный обработчик
-
 
             _cancellationTokenSource = new CancellationTokenSource();
 
-            Task.Run(Workflow, _cancellationTokenSource.Token);
+        }
+
+        public void Start()
+        {
+            if (_running)  return;
+            Workflow().Forget();
             _running = true;
         }
 
@@ -64,28 +57,41 @@ namespace RenDisco {
         private InstructionContext _instructionContext;
         public List<Instruction> Commands;
         private InstructionProcessor _instructionProcessor;
-        private ControlFlowProcessor _controlFlowProcessor;
         private CommandFactory _factory;
         public Stack<InstructionContext> Parents;
 
-        public UniTaskVoid Workflow()
+        public async UniTaskVoid Workflow()
         {
-            var instructions = _instructionContext.Instructions[_instructionContext.InstructionCounter];
-
-            var command = _factory.CreateCommand(instructions);
-            IEnumerator<ControlFlowSignal> commandFlow = command.Flow().GetEnumerator();
-            var canNext = commandFlow.MoveNext();
-            while (!_instructionProcessor.IsCompleted())
+            try
             {
-                var signal = _instructionProcessor.GetNextControlSignal();
-
-                _controlFlowProcessor.Process(signal, () =>
+                var instructions = _instructionProcessor.Start();
+                while (_instructionProcessor.IsRunning() && instructions != null)
                 {
-                    canNext = commandFlow.MoveNext();
-                });
-            }
-        }
+                    try
+                    {
+                        var command = _factory.CreateCommand(instructions);
+                        var controlSignal = await command.Execute();
+                        instructions = _instructionProcessor.ProcessNextInstruction(controlSignal);
+                    }
+                    catch (Exception ex)
+                    {
 
- 
+                        Debug.Log(ex);
+                    }
+                }
+
+                if (instructions == null && _instructionProcessor.IsRunning())
+                {
+                    Debug.LogError("Unexpected behavior instruction equals null");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.Log(ex);
+            }
+
+
+        }
     }
 }

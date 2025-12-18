@@ -2,7 +2,8 @@
     "name": "rendisco",
     "rootNamespace": "",
     "references": [
-        "GUID:3542f95d3053dc747be1d20752c7b1c0"
+        "GUID:3542f95d3053dc747be1d20752c7b1c0",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿
+using Cysharp.Threading.Tasks;
 
 namespace RenDisco.Commands
 {
-    public abstract class DialogueCommand : Command<Dialogue>
+    public class DialogueCommand : Command<Dialogue>
     {
         public DialogueCommand(Dialogue instruction) : base(instruction)
+        {
+        }
+
+        public override async UniTask<ControlFlowSignal> Execute()
+        {
+            return null;
+        }
+
+        public override void Undo()
         {
         }
     }

@@ -1,6 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
+using Unity.Plastic.Antlr3.Runtime.Tree;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
+using static RenpyParser;
 
 namespace RenDisco
 {
@@ -20,41 +26,98 @@ namespace RenDisco
             };
         }
 
-        public override object VisitCharacter_def([NotNull] RenpyParser.Character_defContext context)
+        public override object VisitDefine_def([NotNull] RenpyParser.Define_defContext context)
         {
-            string name = context.IDENT().GetText();
-            string characterName = context.STRING(0).GetText();
-            string stringValue = context.STRING(0).GetText().Trim('"');
-            string? color = context.STRING(1)?.GetText().Trim('"');
+            string valueName = context.IDENT(0).ToString();
+            string type = context.IDENT(1).ToString();
+            List<ParamPairExpression> arguments = new List<ParamPairExpression>();
+            ArgumentContext[] argumentContexts = context.arguments().GetRuleContexts<ArgumentContext>();
+            for (int i = 0; i < argumentContexts.Length; i++)
+            {
+                
+                RenpyParser.ArgumentContext argument = argumentContexts[i];
+
+                ParamPairExpression pair = new ParamPairExpression();
+
+                ITerminalNode IDENT = argument.IDENT();
+                
+                // IDENT may be null
+                if (IDENT != null)
+                {
+                    pair.ParamName = argument.IDENT().ToString();
+                }
+
+                // We take it as a fact that the literal does not contain nested expressions
+                var literal = argument.expression().literal().children[0] as ITerminalNode;
+
+                switch (literal.Symbol.Type)
+                {
+                    case RenpyParser.NUMBER:
+                        pair.ParamValue = new NumberLiteralExpression()
+                        {
+                            Value = double.Parse(literal.ToString())
+                        };
+                        break;
+                    case RenpyParser.STRING:
+                    default:
+                        pair.ParamValue = new StringLiteralExpression()
+                        {
+                            Value = literal.ToString()
+                        };
+                        break;
+                }
+                arguments.Add(pair);
+            }
 
             return new Define
             {
-                Name = name,
-                Value = $"Character(\"{stringValue}\"{(color != null ? $", color=\"{color}\"" : "")})",
+                Name = valueName,
                 Definition = new MethodExpression
                 {
-                    MethodName = "Character",
+                    MethodName = type,
                     ParamList = new ArgumentsExpression
                     {
-                        Params = new List<ParamPairExpression>
-                        {
-                            new ParamPairExpression { 
-                                ParamValue = new StringLiteralExpression{
-                                    Value = stringValue
-                                }
-                            },
-                            (color != null) ? 
-                                new ParamPairExpression{ 
-                                    ParamName = "color",
-                                    ParamValue = new StringLiteralExpression{
-                                        Value = color
-                                    }
-                                } : null
-                        }.Where(x => x != null).ToList()
+                        Params = arguments
                     }
                 }
+
             };
         }
+        //public override object VisitCharacter_def([NotNull] RenpyParser.Character_defContext context)
+        //{
+        //    string name = context.IDENT().GetText();
+        //    string characterName = context.STRING(0).GetText();
+        //    string stringValue = context.STRING(0).GetText().Trim('"');
+        //    string? color = context.STRING(1)?.GetText().Trim('"');
+
+        //    return new Define
+        //    {
+        //        Name = name,
+        //        Value = $"Character(\"{stringValue}\"{(color != null ? $", color=\"{color}\"" : "")})",
+        //        Definition = new MethodExpression
+        //        {
+        //            MethodName = "Character",
+        //            ParamList = new ArgumentsExpression
+        //            {
+        //                Params = new List<ParamPairExpression>
+        //                {
+        //                    new ParamPairExpression { 
+        //                        ParamValue = new StringLiteralExpression{
+        //                            Value = stringValue
+        //                        }
+        //                    },
+        //                    (color != null) ? 
+        //                        new ParamPairExpression{ 
+        //                            ParamName = "color",
+        //                            ParamValue = new StringLiteralExpression{
+        //                                Value = color
+        //                            }
+        //                        } : null
+        //                }.Where(x => x != null).ToList()
+        //            }
+        //        }
+        //    };
+        //}
 
 
         public override object VisitAssignment([NotNull] RenpyParser.AssignmentContext context)

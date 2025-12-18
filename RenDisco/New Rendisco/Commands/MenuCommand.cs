@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RenDisco.Commands
 {
@@ -11,18 +9,15 @@ namespace RenDisco.Commands
         {
         }
 
-        public override IEnumerable<ControlFlowSignal> Flow()
+        public override async UniTask<ControlFlowSignal> Execute()
         {
             var result = new ControlFlowSignal();
+            await UniTask.SwitchToThreadPool();
             Thread.Sleep(5000);
+            await UniTask.SwitchToMainThread();
 
-            SignalBroker.Emit(DefaultSignals.Choice);
             
-            var input = (int)WaitableMessageBroker.WaitForMessage(DefaultSignals.Choice);
-            
-            result.Instructions = Instruction.Choices[input].Response;
-            
-            yield return result;
+            return ControlFlowSignal.Down(Instruction.Choices[0].Response);
         }
 
         public override void Undo()

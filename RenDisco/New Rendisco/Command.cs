@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace RenDisco.Commands
 {
-    public abstract class Command
+    public abstract partial class Command
     {
-        public abstract IEnumerable<ControlFlowSignal> Flow();
+        public abstract UniTask<ControlFlowSignal> Execute();
         public abstract void Undo();
     }
-    public abstract class Command<T> : Command where T : Instruction 
+    public abstract partial class Command<T> : Command where T : Instruction 
     {
         protected T Instruction;
         protected Command(T instruction): base()

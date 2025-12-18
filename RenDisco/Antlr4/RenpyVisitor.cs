@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Renpy.g4 by ANTLR 4.13.2
+// Generated from ./Renpy.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -50,11 +50,11 @@ public interface IRenpyVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitLabel_def([NotNull] RenpyParser.Label_defContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="RenpyParser.character_def"/>.
+	/// Visit a parse tree produced by <see cref="RenpyParser.define_def"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCharacter_def([NotNull] RenpyParser.Character_defContext context);
+	Result VisitDefine_def([NotNull] RenpyParser.Define_defContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="RenpyParser.scene_def"/>.
 	/// </summary>
@@ -187,4 +187,10 @@ public interface IRenpyVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitExpression([NotNull] RenpyParser.ExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLiteral([NotNull] RenpyParser.LiteralContext context);
 }

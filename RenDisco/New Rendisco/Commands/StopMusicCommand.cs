@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,18 @@ using System.Threading.Tasks;
 
 namespace RenDisco.Commands
 {
-    public abstract class StopMusicCommand : Command<StopMusic>
+    public class StopMusicCommand : Command<StopMusic>
     {
         public StopMusicCommand(StopMusic instruction) : base(instruction)
+        {
+        }
+
+        public override async UniTask<ControlFlowSignal> Execute()
+        {
+            return null;
+        }
+
+        public override void Undo()
         {
         }
     }

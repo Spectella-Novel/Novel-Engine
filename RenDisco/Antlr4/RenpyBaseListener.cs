@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Renpy.g4 by ANTLR 4.13.2
+// Generated from ./Renpy.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -72,17 +72,17 @@ public partial class RenpyBaseListener : IRenpyListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLabel_def([NotNull] RenpyParser.Label_defContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="RenpyParser.character_def"/>.
+	/// Enter a parse tree produced by <see cref="RenpyParser.define_def"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCharacter_def([NotNull] RenpyParser.Character_defContext context) { }
+	public virtual void EnterDefine_def([NotNull] RenpyParser.Define_defContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="RenpyParser.character_def"/>.
+	/// Exit a parse tree produced by <see cref="RenpyParser.define_def"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCharacter_def([NotNull] RenpyParser.Character_defContext context) { }
+	public virtual void ExitDefine_def([NotNull] RenpyParser.Define_defContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RenpyParser.scene_def"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -347,6 +347,18 @@ public partial class RenpyBaseListener : IRenpyListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpression([NotNull] RenpyParser.ExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLiteral([NotNull] RenpyParser.LiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLiteral([NotNull] RenpyParser.LiteralContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

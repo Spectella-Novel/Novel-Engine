@@ -42,7 +42,7 @@ block:
 
 statement:
   label_def
-  | character_def
+  | define_def
   | scene_def
   | pause_def
   | play_music_def
@@ -64,8 +64,8 @@ label_def:
   'label' IDENT (arguments)? ':' (INDENT block DEDENT)?
   ;
 
-character_def:
-  'define' IDENT '=' 'Character' '(' STRING ',' ( 'color' '=' STRING ')' )?
+define_def:
+  'define' IDENT '=' IDENT arguments
   ;
 
 scene_def:
@@ -160,9 +160,7 @@ assignment:
   ;
 
 expression:
-  NUMBER
-  | STRING
-  | IDENT
+  literal
   | expression ('+'|'-'|'*'|'/') expression 
   | expression '<' expression
   | expression '>' expression
@@ -171,7 +169,11 @@ expression:
   | FALSE 
   | '(' expression ')'
   ;
-
+literal:
+  NUMBER
+  | STRING
+  | IDENT
+  ;
 IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
 
 STRING: '"' .*? '"'; // Simple string matching (improve for escaping)

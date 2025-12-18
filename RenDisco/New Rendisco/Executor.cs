@@ -15,11 +15,6 @@ namespace RenDisco
         {
             _factory = commandFactory;
         }
-        public IEnumerable<ControlFlowSignal> GetFlow(Instruction instruction)
-        {
-            var command = _factory.CreateCommand(instruction);
-            var flow = command.Flow();
-            return flow;
-        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace RenDisco.Commands
         {
         }
 
-        public override IEnumerable<ControlFlowSignal> Flow()
+        public override async UniTask<ControlFlowSignal> Execute()
         {
             return null;
         }

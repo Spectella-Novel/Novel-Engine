@@ -10,7 +10,6 @@ namespace RenDisco.Commands
     public abstract class CommandFactory
     {
         protected IStorage Storage;
-        private bool IsInit = false;
 
         protected CommandFactory(IStorage storage)
         {
@@ -20,7 +19,6 @@ namespace RenDisco.Commands
 
         public virtual Command CreateCommand(RenDisco.Instruction command)
         {
-            if(!IsInit) { return null; }
             Console.WriteLine(command.ToString());
             switch (command)
             {
@@ -84,14 +82,48 @@ namespace RenDisco.Commands
             return new IfConditionBlockCommand(ifCondition);
         }
 
-        protected abstract DefineCommand CreateDefineCommand(Define define);
-        protected abstract ShowImageCommand CreateShowImageCommand(Show show);
-        protected abstract ShowSceneCommand CreateShowSceneCommand(Scene scene);
-        protected abstract NarrationCommand CreateNarrationCommand(Narration narration);
-        protected abstract DialogueCommand CreateDialogueCommand(Dialogue dialogue);
-        protected abstract HideCommand CreateHideCommand(Hide hide);
-        protected abstract StopMusicCommand CreateStopMusicCommand(StopMusic stopMusic);
-        protected abstract PauseCommand CreatePauseCommand(Pause pause);
-        protected abstract PlayMusicCommand CreatePlayMusicCommand(PlayMusic playMusic);
+        protected virtual DefineCommand CreateDefineCommand(Define define) 
+        {
+            return new DefineCommand(define, Storage);
+        }
+
+        protected virtual ShowImageCommand CreateShowImageCommand(Show show)
+        {
+            return new ShowImageCommand(show);
+        }
+
+        protected virtual ShowSceneCommand CreateShowSceneCommand(Scene scene)
+        {
+            return new ShowSceneCommand(scene);
+        }
+        protected virtual NarrationCommand CreateNarrationCommand(Narration narration)
+        {
+            return new NarrationCommand(narration);
+        }
+
+        protected virtual DialogueCommand CreateDialogueCommand(Dialogue dialogue)
+        {
+            return new DialogueCommand(dialogue);
+        }
+
+        protected virtual HideCommand CreateHideCommand(Hide hide)
+        {
+            return new HideCommand(hide);
+        }
+
+        protected virtual StopMusicCommand CreateStopMusicCommand(StopMusic stopMusic)
+        {
+            return new StopMusicCommand(stopMusic);
+        }
+
+        protected virtual PauseCommand CreatePauseCommand(Pause pause)
+        {
+            return new PauseCommand(pause);
+        }
+
+        protected virtual PlayMusicCommand CreatePlayMusicCommand(PlayMusic playMusic)
+        {
+            return new PlayMusicCommand(playMusic);
+        }
     }
 }

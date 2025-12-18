@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Renpy.g4 by ANTLR 4.13.2
+// Generated from ./Renpy.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -61,15 +61,15 @@ public interface IRenpyListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLabel_def([NotNull] RenpyParser.Label_defContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="RenpyParser.character_def"/>.
+	/// Enter a parse tree produced by <see cref="RenpyParser.define_def"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCharacter_def([NotNull] RenpyParser.Character_defContext context);
+	void EnterDefine_def([NotNull] RenpyParser.Define_defContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="RenpyParser.character_def"/>.
+	/// Exit a parse tree produced by <see cref="RenpyParser.define_def"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCharacter_def([NotNull] RenpyParser.Character_defContext context);
+	void ExitDefine_def([NotNull] RenpyParser.Define_defContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RenpyParser.scene_def"/>.
 	/// </summary>
@@ -290,4 +290,14 @@ public interface IRenpyListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitExpression([NotNull] RenpyParser.ExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLiteral([NotNull] RenpyParser.LiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLiteral([NotNull] RenpyParser.LiteralContext context);
 }
