@@ -58,7 +58,10 @@ statement:
   | dialogue
   | narration
   | conditional_block
+  | debug_def
   ;
+debug_def:
+  'debug' expression;
 
 label_def:
   'label' IDENT (arguments)? ':' (INDENT block DEDENT)?
@@ -69,7 +72,7 @@ define_def:
   ;
 
 scene_def:
-  'scene' 'bg' IDENT ('with' (
+  'scene' IDENT ('with' (
     'dissolve'
     | 'fade'
     | 'crossfade'))? //TODO: Implement transitions
@@ -80,11 +83,11 @@ pause_def:
   ;
 
 play_music_def:
-  'play music' STRING ('fadein' NUMBER)?
+  'play music' IDENT ('fadein' NUMBER)?
   ;
 
 stop_music_def:
-  'stop music' ('fadeout' NUMBER)?
+  'stop music' IDENT ('fadeout' NUMBER)?
   ;
 
 jump_def:
@@ -96,8 +99,9 @@ call_def:
   ;
 
 show_def:
-  'show' STRING (arguments)?
+  'show' IDENT IDENT
   ;
+
 hide_def:
   'hide' STRING (arguments)?
   ;
@@ -159,16 +163,46 @@ assignment:
   '$' IDENT '=' expression
   ;
 
-expression:
-  literal
-  | expression ('+'|'-'|'*'|'/') expression 
-  | expression '<' expression
-  | expression '>' expression
-  | expression '=' expression 
-  | TRUE 
-  | FALSE 
-  | '(' expression ')'
-  ;
+expression
+    : additive
+    | logical_or
+    ;
+
+// OR имеет самый низкий приоритет среди логических операций
+logical_or
+    : logical_and (OR logical_and)*
+    ;
+
+// AND — средний приоритет
+logical_and
+    : logical_not (AND logical_not)*
+    ;
+
+// NOT — унарный, высший приоритет среди логических
+logical_not
+    : NOT logical_not
+    | relational
+    ;
+
+// Реляционные операции: поддерживают все сравнения
+relational
+    : additive (op+=(LT | GT | LE | GE | EQ | NE) additive)*
+    ;
+
+
+additive
+    : multiplicative (op+=(PLUS | MINUS) multiplicative)*
+    ;
+
+multiplicative
+    : primary (op+=(STAR | SLASH) primary)*
+    ;
+
+primary
+    : literal
+    | '(' expression ')'
+    ;
+
 literal:
   NUMBER
   | STRING
@@ -178,6 +212,19 @@ IDENT: [a-zA-Z_][a-zA-Z0-9_]*;
 
 STRING: '"' .*? '"'; // Simple string matching (improve for escaping)
 
+PLUS  : '+';
+MINUS : '-';
+STAR  : '*';
+SLASH : '/';
+LT    : '<';
+GT    : '>';
+EQ    : '==';
+NOT   : 'not';
+AND   : 'and';
+OR    : 'or';
+NE    : '!=';
+LE    : '<=';
+GE    : '>=';
 NUMBER: 
   [0-9]+ ('.' [0-9]+)? 
   | '.' [0-9]+ 
@@ -185,7 +232,7 @@ NUMBER:
   ;
 
 NL:
-  (' '* '\r'? '\n' ' '*); // Note the ' '*
+  ('\r'? '\n' ' '*); // Note the ' '*
 
 WS: [ \t]+ -> skip;
 

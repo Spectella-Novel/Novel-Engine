@@ -44,6 +44,12 @@ public interface IRenpyVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitStatement([NotNull] RenpyParser.StatementContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.debug_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDebug_def([NotNull] RenpyParser.Debug_defContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="RenpyParser.label_def"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -187,6 +193,48 @@ public interface IRenpyVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitExpression([NotNull] RenpyParser.ExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.logical_or"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLogical_or([NotNull] RenpyParser.Logical_orContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.logical_and"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLogical_and([NotNull] RenpyParser.Logical_andContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.logical_not"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLogical_not([NotNull] RenpyParser.Logical_notContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.relational"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRelational([NotNull] RenpyParser.RelationalContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.additive"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdditive([NotNull] RenpyParser.AdditiveContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.multiplicative"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMultiplicative([NotNull] RenpyParser.MultiplicativeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RenpyParser.primary"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPrimary([NotNull] RenpyParser.PrimaryContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="RenpyParser.literal"/>.
 	/// </summary>

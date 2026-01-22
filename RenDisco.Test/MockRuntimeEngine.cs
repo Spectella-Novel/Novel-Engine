@@ -81,24 +81,24 @@ namespace RenDisco.Test
 
         public void ExecuteDefine(Define define)
         {
-            if (define.Value.Contains("Character"))
-            {
-                string text = define.Value;
-                string characterName = ExtractStringWithinQuotes(text.Substring(text.IndexOf('(') + 1));
-                if (text.Contains("color"))
-                {
-                    string color = ExtractStringWithinQuotes(text.Substring(text.IndexOf("color=") + 6));
-                    DefineCharacter(define.Name, characterName, color);
-                }
-                else
-                {
-                    DefineCharacter(define.Name, characterName);
-                }
-            }
-            else
-            {
-                SetVariable(define.Name, define.Value.Trim('"'));
-            }
+            //if (define.Value.Contains("Character"))
+            //{
+            //    string text = define.Value;
+            //    string characterName = ExtractStringWithinQuotes(text.Substring(text.IndexOf('(') + 1));
+            //    if (text.Contains("color"))
+            //    {
+            //        string color = ExtractStringWithinQuotes(text.Substring(text.IndexOf("color=") + 6));
+            //        DefineCharacter(define.Name, characterName, color);
+            //    }
+            //    else
+            //    {
+            //        DefineCharacter(define.Name, characterName);
+            //    }
+            //}
+            //else
+            //{
+            //    SetVariable(define.Name, define.Value.Trim('"'));
+            //}
         }
 
         private string ExtractStringWithinQuotes(string text)

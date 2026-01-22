@@ -45,7 +45,7 @@ namespace RenDisco {
         /// <summary>
         /// Gets or sets the image to display for the scene.
         /// </summary>
-        public string Image { get; set; }
+        public string SceneVariable { get; set; }
         
         /// <summary>
         /// Gets or sets the transition effect for the scene.
@@ -139,11 +139,9 @@ namespace RenDisco {
         /// <summary>
         /// Gets or sets the condition to evaluate.
         /// </summary>
-        public string Condition { get; set; }
+        public Expression Condition { get; set; }
 
         public List<ElifCondition> ElifConditions { get; set; } = new List<ElifCondition>();
-
-        public ElseCondition ElseConditions { get; set; } = new ElseCondition();
         
         /// <summary>
         /// Gets or sets the list of commands to execute if the condition is true.
@@ -161,7 +159,7 @@ namespace RenDisco {
         /// <summary>
         /// Gets or sets the condition to evaluate.
         /// </summary>
-        public string Condition { get; set; }
+        public Expression Condition { get; set; }
         
         /// <summary>
         /// Gets or sets the list of commands to execute if the condition is true.
@@ -170,18 +168,6 @@ namespace RenDisco {
     }
 
 
-    /// <summary>
-    /// Represents an elif-condition command to execute commands based on a condition (part of if-elif-else chain).
-    /// </summary>
-    public class ElseCondition : Instruction
-    {
-        public override string Type => "else";
-        
-        /// <summary>
-        /// Gets or sets the list of commands to execute if the condition is true.
-        /// </summary>
-        public List<Instruction> Content { get; set; } = new List<Instruction>();
-    }
 
     /// <summary>
     /// Represents a define command to declare characters or variables.
@@ -203,7 +189,35 @@ namespace RenDisco {
         /// <summary>
         /// Gets or sets the value to be defined.
         /// </summary>
-        public string Value { get; set; }
+        public Expression Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the right hand value to be defined.
+        /// </summary>
+        public MethodExpression? Definition { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a assignment command to declare characters or variables.
+    /// </summary>
+    public class Assignment : Instruction
+    {
+        public override string Type => "assignment";
+
+        /// <summary>
+        /// Gets or sets the ID of the definition.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name or key of the definition.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value to be defined.
+        /// </summary>
+        public Expression Expression { get; set; }
 
         /// <summary>
         /// Gets or sets the right hand value to be defined.
@@ -221,7 +235,7 @@ namespace RenDisco {
         /// <summary>
         /// Gets or sets the file path or identifier for the music file to play.
         /// </summary>
-        public string File { get; set; }
+        public string AudioName { get; set; }
         
         /// <summary>
         /// Gets or sets the duration of the fade-in effect.
@@ -235,7 +249,12 @@ namespace RenDisco {
     public class StopMusic : Instruction
     {
         public override string Type => "stop_music";
-        
+
+        /// <summary>
+        /// Gets or sets the file path or identifier for the music file to play.
+        /// </summary>
+        public string AudioName { get; set; }
+
         /// <summary>
         /// Gets or sets the duration of the fade-out effect.
         /// </summary>
@@ -248,11 +267,16 @@ namespace RenDisco {
     public class Show : Instruction
     {
         public override string Type => "show";
-        
+
         /// <summary>
-        /// Gets or sets the image to be shown.
+        /// Gets or sets the Character to be shown.
         /// </summary>
-        public string Image { get; set; }
+        public string Character { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Emotion to be shown.
+        /// </summary>
+        public string? Emotion { get; set; }
         
         /// <summary>
         /// Gets or sets the position of the image on the screen.
@@ -308,8 +332,15 @@ namespace RenDisco {
         /// </summary>
         public string Label { get; set; }
     }
+    /// <summary>
+    /// Debug class 
+    /// </summary>
+    public class DebugLog : Instruction
+    {
+        public override string Type => "debug";
 
-
+        public Expression Expression { get; set; }
+    }
     /// <summary>
     /// Represents a jump command to jump to a specified label.
     /// </summary>

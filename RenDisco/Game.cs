@@ -62,34 +62,25 @@ namespace RenDisco {
 
         public async UniTaskVoid Workflow()
         {
-            try
-            {
+            //try
+            //{
                 var instructions = _instructionProcessor.Start();
                 while (_instructionProcessor.IsRunning() && instructions != null)
                 {
-                    try
-                    {
-                        var command = _factory.CreateCommand(instructions);
-                        var controlSignal = await command.Execute();
-                        instructions = _instructionProcessor.ProcessNextInstruction(controlSignal);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        Debug.Log(ex);
-                    }
+                    var command = _factory.CreateCommand(instructions);
+                    var controlSignal = await command.Execute();
+                    instructions = _instructionProcessor.ProcessNextInstruction(controlSignal);
                 }
 
                 if (instructions == null && _instructionProcessor.IsRunning())
                 {
                     Debug.LogError("Unexpected behavior instruction equals null");
                 }
-            }
-            catch (Exception ex)
-            {
-
-                Debug.Log(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.Log(ex);
+            //}
 
 
         }

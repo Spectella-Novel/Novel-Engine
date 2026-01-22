@@ -3,19 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace RenDisco.Commands
 {
-    public class ElIfConditionalBlockCommand : Command<ElifCondition>
+    public class DebugCommand : Command<DebugLog>
     {
-        public ElIfConditionalBlockCommand(ElifCondition instruction) : base(instruction)
+        public DebugCommand(DebugLog instruction, IStorage storage) : base(instruction)
         {
+            Storage = storage;
         }
+
+        public IStorage Storage { get; }
 
         public override async UniTask<ControlFlowSignal> Execute()
         {
+            string expression =  Instruction.Expression.Evaluate(Storage).ToString();
+            Console.WriteLine($"[Debug] {expression}");
             return null;
         }
 

@@ -39,41 +39,46 @@ public partial class RenpyParser : Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		T__31=32, T__32=33, T__33=34, T__34=35, IDENT=36, STRING=37, NUMBER=38, 
-		NL=39, WS=40, LINE_COMMENT=41, INDENT=42, DEDENT=43, WITH=44, FADEIN=45, 
-		FADEOUT=46, JUMP=47, CALL=48, RETURN=49, MENU=50, DEFAULT=51, TRUE=52, 
-		FALSE=53;
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, IDENT=30, STRING=31, 
+		PLUS=32, MINUS=33, STAR=34, SLASH=35, LT=36, GT=37, EQ=38, NOT=39, AND=40, 
+		OR=41, NE=42, LE=43, GE=44, NUMBER=45, NL=46, WS=47, LINE_COMMENT=48, 
+		INDENT=49, DEDENT=50, WITH=51, FADEIN=52, FADEOUT=53, JUMP=54, CALL=55, 
+		RETURN=56, MENU=57, DEFAULT=58, TRUE=59, FALSE=60;
 	public const int
-		RULE_block = 0, RULE_statement = 1, RULE_label_def = 2, RULE_define_def = 3, 
-		RULE_scene_def = 4, RULE_pause_def = 5, RULE_play_music_def = 6, RULE_stop_music_def = 7, 
-		RULE_jump_def = 8, RULE_call_def = 9, RULE_show_def = 10, RULE_hide_def = 11, 
-		RULE_menu_def = 12, RULE_menu_option = 13, RULE_default_def = 14, RULE_return_def = 15, 
-		RULE_dialogue = 16, RULE_narration = 17, RULE_character_ref = 18, RULE_arguments = 19, 
-		RULE_argument = 20, RULE_conditional_block = 21, RULE_elif_block = 22, 
-		RULE_else_block = 23, RULE_assignment = 24, RULE_expression = 25, RULE_literal = 26;
+		RULE_block = 0, RULE_statement = 1, RULE_debug_def = 2, RULE_label_def = 3, 
+		RULE_define_def = 4, RULE_scene_def = 5, RULE_pause_def = 6, RULE_play_music_def = 7, 
+		RULE_stop_music_def = 8, RULE_jump_def = 9, RULE_call_def = 10, RULE_show_def = 11, 
+		RULE_hide_def = 12, RULE_menu_def = 13, RULE_menu_option = 14, RULE_default_def = 15, 
+		RULE_return_def = 16, RULE_dialogue = 17, RULE_narration = 18, RULE_character_ref = 19, 
+		RULE_arguments = 20, RULE_argument = 21, RULE_conditional_block = 22, 
+		RULE_elif_block = 23, RULE_else_block = 24, RULE_assignment = 25, RULE_expression = 26, 
+		RULE_logical_or = 27, RULE_logical_and = 28, RULE_logical_not = 29, RULE_relational = 30, 
+		RULE_additive = 31, RULE_multiplicative = 32, RULE_primary = 33, RULE_literal = 34;
 	public static readonly string[] ruleNames = {
-		"block", "statement", "label_def", "define_def", "scene_def", "pause_def", 
-		"play_music_def", "stop_music_def", "jump_def", "call_def", "show_def", 
-		"hide_def", "menu_def", "menu_option", "default_def", "return_def", "dialogue", 
-		"narration", "character_ref", "arguments", "argument", "conditional_block", 
-		"elif_block", "else_block", "assignment", "expression", "literal"
+		"block", "statement", "debug_def", "label_def", "define_def", "scene_def", 
+		"pause_def", "play_music_def", "stop_music_def", "jump_def", "call_def", 
+		"show_def", "hide_def", "menu_def", "menu_option", "default_def", "return_def", 
+		"dialogue", "narration", "character_ref", "arguments", "argument", "conditional_block", 
+		"elif_block", "else_block", "assignment", "expression", "logical_or", 
+		"logical_and", "logical_not", "relational", "additive", "multiplicative", 
+		"primary", "literal"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'label'", "':'", "'define'", "'='", "'scene'", "'bg'", "'with'", 
+		null, "'debug'", "'label'", "':'", "'define'", "'='", "'scene'", "'with'", 
 		"'dissolve'", "'fade'", "'crossfade'", "'pause'", "'play music'", "'fadein'", 
 		"'stop music'", "'fadeout'", "'jump'", "'call'", "'show'", "'hide'", "'menu'", 
 		"'default'", "'return'", "'('", "','", "')'", "'if'", "'elif'", "'else'", 
-		"'$'", "'+'", "'-'", "'*'", "'/'", "'<'", "'>'"
+		"'$'", null, null, "'+'", "'-'", "'*'", "'/'", "'<'", "'>'", "'=='", "'not'", 
+		"'and'", "'or'", "'!='", "'<='", "'>='"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		"IDENT", "STRING", "NUMBER", "NL", "WS", "LINE_COMMENT", "INDENT", "DEDENT", 
-		"WITH", "FADEIN", "FADEOUT", "JUMP", "CALL", "RETURN", "MENU", "DEFAULT", 
-		"TRUE", "FALSE"
+		null, null, null, null, null, null, "IDENT", "STRING", "PLUS", "MINUS", 
+		"STAR", "SLASH", "LT", "GT", "EQ", "NOT", "AND", "OR", "NE", "LE", "GE", 
+		"NUMBER", "NL", "WS", "LINE_COMMENT", "INDENT", "DEDENT", "WITH", "FADEIN", 
+		"FADEOUT", "JUMP", "CALL", "RETURN", "MENU", "DEFAULT", "TRUE", "FALSE"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -149,33 +154,33 @@ public partial class RenpyParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 54;
+			State = 70;
 			statement();
-			State = 64;
+			State = 80;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 756526569514L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 70372577728598L) != 0)) {
 				{
 				{
-				State = 58;
+				State = 74;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 				while (_la==NL) {
 					{
 					{
-					State = 55;
+					State = 71;
 					Match(NL);
 					}
 					}
-					State = 60;
+					State = 76;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
 				}
-				State = 61;
+				State = 77;
 				statement();
 				}
 				}
-				State = 66;
+				State = 82;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -244,6 +249,9 @@ public partial class RenpyParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Conditional_blockContext conditional_block() {
 			return GetRuleContext<Conditional_blockContext>(0);
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public Debug_defContext debug_def() {
+			return GetRuleContext<Debug_defContext>(0);
+		}
 		public StatementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -272,130 +280,188 @@ public partial class RenpyParser : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_statement);
 		try {
-			State = 84;
+			State = 101;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__0:
+			case T__1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 67;
+				State = 83;
 				label_def();
 				}
 				break;
-			case T__2:
+			case T__3:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 68;
+				State = 84;
 				define_def();
 				}
 				break;
-			case T__4:
+			case T__5:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 69;
+				State = 85;
 				scene_def();
 				}
 				break;
 			case T__10:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 70;
+				State = 86;
 				pause_def();
 				}
 				break;
 			case T__11:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 71;
+				State = 87;
 				play_music_def();
 				}
 				break;
 			case T__13:
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 72;
+				State = 88;
 				stop_music_def();
 				}
 				break;
 			case T__15:
 				EnterOuterAlt(_localctx, 7);
 				{
-				State = 73;
+				State = 89;
 				jump_def();
 				}
 				break;
 			case T__16:
 				EnterOuterAlt(_localctx, 8);
 				{
-				State = 74;
+				State = 90;
 				call_def();
 				}
 				break;
 			case T__19:
 				EnterOuterAlt(_localctx, 9);
 				{
-				State = 75;
+				State = 91;
 				menu_def();
 				}
 				break;
 			case T__20:
 				EnterOuterAlt(_localctx, 10);
 				{
-				State = 76;
+				State = 92;
 				default_def();
 				}
 				break;
 			case T__17:
 				EnterOuterAlt(_localctx, 11);
 				{
-				State = 77;
+				State = 93;
 				show_def();
 				}
 				break;
 			case T__18:
 				EnterOuterAlt(_localctx, 12);
 				{
-				State = 78;
+				State = 94;
 				hide_def();
 				}
 				break;
 			case T__21:
 				EnterOuterAlt(_localctx, 13);
 				{
-				State = 79;
+				State = 95;
 				return_def();
 				}
 				break;
 			case T__28:
 				EnterOuterAlt(_localctx, 14);
 				{
-				State = 80;
+				State = 96;
 				assignment();
 				}
 				break;
 			case IDENT:
 				EnterOuterAlt(_localctx, 15);
 				{
-				State = 81;
+				State = 97;
 				dialogue();
 				}
 				break;
 			case STRING:
 				EnterOuterAlt(_localctx, 16);
 				{
-				State = 82;
+				State = 98;
 				narration();
 				}
 				break;
 			case T__25:
 				EnterOuterAlt(_localctx, 17);
 				{
-				State = 83;
+				State = 99;
 				conditional_block();
+				}
+				break;
+			case T__0:
+				EnterOuterAlt(_localctx, 18);
+				{
+				State = 100;
+				debug_def();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Debug_defContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		public Debug_defContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_debug_def; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterDebug_def(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitDebug_def(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDebug_def(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Debug_defContext debug_def() {
+		Debug_defContext _localctx = new Debug_defContext(Context, State);
+		EnterRule(_localctx, 4, RULE_debug_def);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 103;
+			Match(T__0);
+			State = 104;
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -445,37 +511,37 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Label_defContext label_def() {
 		Label_defContext _localctx = new Label_defContext(Context, State);
-		EnterRule(_localctx, 4, RULE_label_def);
+		EnterRule(_localctx, 6, RULE_label_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 86;
-			Match(T__0);
-			State = 87;
+			State = 106;
+			Match(T__1);
+			State = 107;
 			Match(IDENT);
-			State = 89;
+			State = 109;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__22) {
 				{
-				State = 88;
+				State = 108;
 				arguments();
 				}
 			}
 
-			State = 91;
-			Match(T__1);
-			State = 96;
+			State = 111;
+			Match(T__2);
+			State = 116;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==INDENT) {
 				{
-				State = 92;
+				State = 112;
 				Match(INDENT);
-				State = 93;
+				State = 113;
 				block();
-				State = 94;
+				State = 114;
 				Match(DEDENT);
 				}
 			}
@@ -527,19 +593,19 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Define_defContext define_def() {
 		Define_defContext _localctx = new Define_defContext(Context, State);
-		EnterRule(_localctx, 6, RULE_define_def);
+		EnterRule(_localctx, 8, RULE_define_def);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 98;
-			Match(T__2);
-			State = 99;
-			Match(IDENT);
-			State = 100;
+			State = 118;
 			Match(T__3);
-			State = 101;
+			State = 119;
 			Match(IDENT);
-			State = 102;
+			State = 120;
+			Match(T__4);
+			State = 121;
+			Match(IDENT);
+			State = 122;
 			arguments();
 			}
 		}
@@ -582,25 +648,23 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Scene_defContext scene_def() {
 		Scene_defContext _localctx = new Scene_defContext(Context, State);
-		EnterRule(_localctx, 8, RULE_scene_def);
+		EnterRule(_localctx, 10, RULE_scene_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 104;
-			Match(T__4);
-			State = 105;
+			State = 124;
 			Match(T__5);
-			State = 106;
+			State = 125;
 			Match(IDENT);
-			State = 109;
+			State = 128;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__6) {
 				{
-				State = 107;
+				State = 126;
 				Match(T__6);
-				State = 108;
+				State = 127;
 				_la = TokenStream.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1792L) != 0)) ) {
 				ErrorHandler.RecoverInline(this);
@@ -653,13 +717,13 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Pause_defContext pause_def() {
 		Pause_defContext _localctx = new Pause_defContext(Context, State);
-		EnterRule(_localctx, 10, RULE_pause_def);
+		EnterRule(_localctx, 12, RULE_pause_def);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 111;
+			State = 130;
 			Match(T__10);
-			State = 112;
+			State = 131;
 			Match(NUMBER);
 			}
 		}
@@ -675,7 +739,7 @@ public partial class RenpyParser : Parser {
 	}
 
 	public partial class Play_music_defContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(RenpyParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENT() { return GetToken(RenpyParser.IDENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(RenpyParser.NUMBER, 0); }
 		public Play_music_defContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -703,23 +767,23 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Play_music_defContext play_music_def() {
 		Play_music_defContext _localctx = new Play_music_defContext(Context, State);
-		EnterRule(_localctx, 12, RULE_play_music_def);
+		EnterRule(_localctx, 14, RULE_play_music_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 114;
+			State = 133;
 			Match(T__11);
-			State = 115;
-			Match(STRING);
-			State = 118;
+			State = 134;
+			Match(IDENT);
+			State = 137;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__12) {
 				{
-				State = 116;
+				State = 135;
 				Match(T__12);
-				State = 117;
+				State = 136;
 				Match(NUMBER);
 				}
 			}
@@ -738,6 +802,7 @@ public partial class RenpyParser : Parser {
 	}
 
 	public partial class Stop_music_defContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENT() { return GetToken(RenpyParser.IDENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(RenpyParser.NUMBER, 0); }
 		public Stop_music_defContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -765,21 +830,23 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Stop_music_defContext stop_music_def() {
 		Stop_music_defContext _localctx = new Stop_music_defContext(Context, State);
-		EnterRule(_localctx, 14, RULE_stop_music_def);
+		EnterRule(_localctx, 16, RULE_stop_music_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 120;
+			State = 139;
 			Match(T__13);
-			State = 123;
+			State = 140;
+			Match(IDENT);
+			State = 143;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__14) {
 				{
-				State = 121;
+				State = 141;
 				Match(T__14);
-				State = 122;
+				State = 142;
 				Match(NUMBER);
 				}
 			}
@@ -828,21 +895,21 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Jump_defContext jump_def() {
 		Jump_defContext _localctx = new Jump_defContext(Context, State);
-		EnterRule(_localctx, 16, RULE_jump_def);
+		EnterRule(_localctx, 18, RULE_jump_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 125;
+			State = 145;
 			Match(T__15);
-			State = 126;
+			State = 146;
 			Match(IDENT);
-			State = 128;
+			State = 148;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__22) {
 				{
-				State = 127;
+				State = 147;
 				arguments();
 				}
 			}
@@ -891,21 +958,21 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Call_defContext call_def() {
 		Call_defContext _localctx = new Call_defContext(Context, State);
-		EnterRule(_localctx, 18, RULE_call_def);
+		EnterRule(_localctx, 20, RULE_call_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 130;
+			State = 150;
 			Match(T__16);
-			State = 131;
+			State = 151;
 			Match(IDENT);
-			State = 133;
+			State = 153;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__22) {
 				{
-				State = 132;
+				State = 152;
 				arguments();
 				}
 			}
@@ -924,9 +991,9 @@ public partial class RenpyParser : Parser {
 	}
 
 	public partial class Show_defContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(RenpyParser.STRING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ArgumentsContext arguments() {
-			return GetRuleContext<ArgumentsContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] IDENT() { return GetTokens(RenpyParser.IDENT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENT(int i) {
+			return GetToken(RenpyParser.IDENT, i);
 		}
 		public Show_defContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -954,25 +1021,16 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Show_defContext show_def() {
 		Show_defContext _localctx = new Show_defContext(Context, State);
-		EnterRule(_localctx, 20, RULE_show_def);
-		int _la;
+		EnterRule(_localctx, 22, RULE_show_def);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 135;
+			State = 155;
 			Match(T__17);
-			State = 136;
-			Match(STRING);
-			State = 138;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			if (_la==T__22) {
-				{
-				State = 137;
-				arguments();
-				}
-			}
-
+			State = 156;
+			Match(IDENT);
+			State = 157;
+			Match(IDENT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1017,21 +1075,21 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Hide_defContext hide_def() {
 		Hide_defContext _localctx = new Hide_defContext(Context, State);
-		EnterRule(_localctx, 22, RULE_hide_def);
+		EnterRule(_localctx, 24, RULE_hide_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 140;
+			State = 159;
 			Match(T__18);
-			State = 141;
+			State = 160;
 			Match(STRING);
-			State = 143;
+			State = 162;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__22) {
 				{
-				State = 142;
+				State = 161;
 				arguments();
 				}
 			}
@@ -1084,32 +1142,32 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Menu_defContext menu_def() {
 		Menu_defContext _localctx = new Menu_defContext(Context, State);
-		EnterRule(_localctx, 24, RULE_menu_def);
+		EnterRule(_localctx, 26, RULE_menu_def);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 145;
+			State = 164;
 			Match(T__19);
-			State = 146;
-			Match(T__1);
-			State = 147;
+			State = 165;
+			Match(T__2);
+			State = 166;
 			Match(INDENT);
-			State = 151;
+			State = 170;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==STRING) {
 				{
 				{
-				State = 148;
+				State = 167;
 				menu_option();
 				}
 				}
-				State = 153;
+				State = 172;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 154;
+			State = 173;
 			Match(DEDENT);
 			}
 		}
@@ -1157,19 +1215,19 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Menu_optionContext menu_option() {
 		Menu_optionContext _localctx = new Menu_optionContext(Context, State);
-		EnterRule(_localctx, 26, RULE_menu_option);
+		EnterRule(_localctx, 28, RULE_menu_option);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 156;
+			State = 175;
 			Match(STRING);
-			State = 157;
-			Match(T__1);
-			State = 158;
+			State = 176;
+			Match(T__2);
+			State = 177;
 			Match(INDENT);
-			State = 159;
+			State = 178;
 			block();
-			State = 160;
+			State = 179;
 			Match(DEDENT);
 			}
 		}
@@ -1215,18 +1273,18 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Default_defContext default_def() {
 		Default_defContext _localctx = new Default_defContext(Context, State);
-		EnterRule(_localctx, 28, RULE_default_def);
+		EnterRule(_localctx, 30, RULE_default_def);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 162;
+			State = 181;
 			Match(T__20);
-			State = 163;
+			State = 182;
 			Match(IDENT);
-			State = 164;
-			Match(T__3);
-			State = 165;
-			expression(0);
+			State = 183;
+			Match(T__4);
+			State = 184;
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1267,11 +1325,11 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Return_defContext return_def() {
 		Return_defContext _localctx = new Return_defContext(Context, State);
-		EnterRule(_localctx, 30, RULE_return_def);
+		EnterRule(_localctx, 32, RULE_return_def);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 167;
+			State = 186;
 			Match(T__21);
 			}
 		}
@@ -1317,13 +1375,13 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public DialogueContext dialogue() {
 		DialogueContext _localctx = new DialogueContext(Context, State);
-		EnterRule(_localctx, 32, RULE_dialogue);
+		EnterRule(_localctx, 34, RULE_dialogue);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 169;
+			State = 188;
 			character_ref();
-			State = 170;
+			State = 189;
 			Match(STRING);
 			}
 		}
@@ -1366,11 +1424,11 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public NarrationContext narration() {
 		NarrationContext _localctx = new NarrationContext(Context, State);
-		EnterRule(_localctx, 34, RULE_narration);
+		EnterRule(_localctx, 36, RULE_narration);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 172;
+			State = 191;
 			Match(STRING);
 			}
 		}
@@ -1413,11 +1471,11 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Character_refContext character_ref() {
 		Character_refContext _localctx = new Character_refContext(Context, State);
-		EnterRule(_localctx, 36, RULE_character_ref);
+		EnterRule(_localctx, 38, RULE_character_ref);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 174;
+			State = 193;
 			Match(IDENT);
 			}
 		}
@@ -1465,32 +1523,32 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public ArgumentsContext arguments() {
 		ArgumentsContext _localctx = new ArgumentsContext(Context, State);
-		EnterRule(_localctx, 38, RULE_arguments);
+		EnterRule(_localctx, 40, RULE_arguments);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 176;
+			State = 195;
 			Match(T__22);
-			State = 177;
+			State = 196;
 			argument();
-			State = 182;
+			State = 201;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==T__23) {
 				{
 				{
-				State = 178;
+				State = 197;
 				Match(T__23);
-				State = 179;
+				State = 198;
 				argument();
 				}
 				}
-				State = 184;
+				State = 203;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 185;
+			State = 204;
 			Match(T__24);
 			}
 		}
@@ -1536,24 +1594,24 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public ArgumentContext argument() {
 		ArgumentContext _localctx = new ArgumentContext(Context, State);
-		EnterRule(_localctx, 40, RULE_argument);
+		EnterRule(_localctx, 42, RULE_argument);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 189;
+			State = 208;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,14,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,13,Context) ) {
 			case 1:
 				{
-				State = 187;
+				State = 206;
 				Match(IDENT);
-				State = 188;
-				Match(T__3);
+				State = 207;
+				Match(T__4);
 				}
 				break;
 			}
-			State = 191;
-			expression(0);
+			State = 210;
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1611,43 +1669,43 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Conditional_blockContext conditional_block() {
 		Conditional_blockContext _localctx = new Conditional_blockContext(Context, State);
-		EnterRule(_localctx, 42, RULE_conditional_block);
+		EnterRule(_localctx, 44, RULE_conditional_block);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 193;
+			State = 212;
 			Match(T__25);
-			State = 194;
-			expression(0);
-			State = 195;
-			Match(T__1);
-			State = 196;
+			State = 213;
+			expression();
+			State = 214;
+			Match(T__2);
+			State = 215;
 			Match(INDENT);
-			State = 197;
+			State = 216;
 			block();
-			State = 198;
+			State = 217;
 			Match(DEDENT);
-			State = 202;
+			State = 221;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==T__26) {
 				{
 				{
-				State = 199;
+				State = 218;
 				elif_block();
 				}
 				}
-				State = 204;
+				State = 223;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 206;
+			State = 225;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__27) {
 				{
-				State = 205;
+				State = 224;
 				else_block();
 				}
 			}
@@ -1700,21 +1758,21 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Elif_blockContext elif_block() {
 		Elif_blockContext _localctx = new Elif_blockContext(Context, State);
-		EnterRule(_localctx, 44, RULE_elif_block);
+		EnterRule(_localctx, 46, RULE_elif_block);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 208;
+			State = 227;
 			Match(T__26);
-			State = 209;
-			expression(0);
-			State = 210;
-			Match(T__1);
-			State = 211;
+			State = 228;
+			expression();
+			State = 229;
+			Match(T__2);
+			State = 230;
 			Match(INDENT);
-			State = 212;
+			State = 231;
 			block();
-			State = 213;
+			State = 232;
 			Match(DEDENT);
 			}
 		}
@@ -1761,19 +1819,19 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public Else_blockContext else_block() {
 		Else_blockContext _localctx = new Else_blockContext(Context, State);
-		EnterRule(_localctx, 46, RULE_else_block);
+		EnterRule(_localctx, 48, RULE_else_block);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 215;
+			State = 234;
 			Match(T__27);
-			State = 216;
-			Match(T__1);
-			State = 217;
+			State = 235;
+			Match(T__2);
+			State = 236;
 			Match(INDENT);
-			State = 218;
+			State = 237;
 			block();
-			State = 219;
+			State = 238;
 			Match(DEDENT);
 			}
 		}
@@ -1819,18 +1877,18 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public AssignmentContext assignment() {
 		AssignmentContext _localctx = new AssignmentContext(Context, State);
-		EnterRule(_localctx, 48, RULE_assignment);
+		EnterRule(_localctx, 50, RULE_assignment);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 221;
+			State = 240;
 			Match(T__28);
-			State = 222;
+			State = 241;
 			Match(IDENT);
-			State = 223;
-			Match(T__3);
-			State = 224;
-			expression(0);
+			State = 242;
+			Match(T__4);
+			State = 243;
+			expression();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1845,16 +1903,11 @@ public partial class RenpyParser : Parser {
 	}
 
 	public partial class ExpressionContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public LiteralContext literal() {
-			return GetRuleContext<LiteralContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public AdditiveContext additive() {
+			return GetRuleContext<AdditiveContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TRUE() { return GetToken(RenpyParser.TRUE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FALSE() { return GetToken(RenpyParser.FALSE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
-			return GetRuleContexts<ExpressionContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
-			return GetRuleContext<ExpressionContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_orContext logical_or() {
+			return GetRuleContext<Logical_orContext>(0);
 		}
 		public ExpressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1881,131 +1934,98 @@ public partial class RenpyParser : Parser {
 
 	[RuleVersion(0)]
 	public ExpressionContext expression() {
-		return expression(0);
+		ExpressionContext _localctx = new ExpressionContext(Context, State);
+		EnterRule(_localctx, 52, RULE_expression);
+		try {
+			State = 247;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,16,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 245;
+				additive();
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 246;
+				logical_or();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
 	}
 
-	private ExpressionContext expression(int _p) {
-		ParserRuleContext _parentctx = Context;
-		int _parentState = State;
-		ExpressionContext _localctx = new ExpressionContext(Context, _parentState);
-		ExpressionContext _prevctx = _localctx;
-		int _startState = 50;
-		EnterRecursionRule(_localctx, 50, RULE_expression, _p);
+	public partial class Logical_orContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_andContext[] logical_and() {
+			return GetRuleContexts<Logical_andContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_andContext logical_and(int i) {
+			return GetRuleContext<Logical_andContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] OR() { return GetTokens(RenpyParser.OR); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR(int i) {
+			return GetToken(RenpyParser.OR, i);
+		}
+		public Logical_orContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_logical_or; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterLogical_or(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitLogical_or(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLogical_or(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Logical_orContext logical_or() {
+		Logical_orContext _localctx = new Logical_orContext(Context, State);
+		EnterRule(_localctx, 54, RULE_logical_or);
 		int _la;
 		try {
-			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 234;
+			State = 249;
+			logical_and();
+			State = 254;
 			ErrorHandler.Sync(this);
-			switch (TokenStream.LA(1)) {
-			case IDENT:
-			case STRING:
-			case NUMBER:
+			_la = TokenStream.LA(1);
+			while (_la==OR) {
 				{
-				State = 227;
-				literal();
-				}
-				break;
-			case TRUE:
 				{
-				State = 228;
-				Match(TRUE);
+				State = 250;
+				Match(OR);
+				State = 251;
+				logical_and();
 				}
-				break;
-			case FALSE:
-				{
-				State = 229;
-				Match(FALSE);
 				}
-				break;
-			case T__22:
-				{
-				State = 230;
-				Match(T__22);
-				State = 231;
-				expression(0);
-				State = 232;
-				Match(T__24);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-			Context.Stop = TokenStream.LT(-1);
-			State = 250;
-			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,19,Context);
-			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( ParseListeners!=null )
-						TriggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					State = 248;
-					ErrorHandler.Sync(this);
-					switch ( Interpreter.AdaptivePredict(TokenStream,18,Context) ) {
-					case 1:
-						{
-						_localctx = new ExpressionContext(_parentctx, _parentState);
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 236;
-						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
-						State = 237;
-						_la = TokenStream.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 16106127360L) != 0)) ) {
-						ErrorHandler.RecoverInline(this);
-						}
-						else {
-							ErrorHandler.ReportMatch(this);
-						    Consume();
-						}
-						State = 238;
-						expression(8);
-						}
-						break;
-					case 2:
-						{
-						_localctx = new ExpressionContext(_parentctx, _parentState);
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 239;
-						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
-						State = 240;
-						Match(T__33);
-						State = 241;
-						expression(7);
-						}
-						break;
-					case 3:
-						{
-						_localctx = new ExpressionContext(_parentctx, _parentState);
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 242;
-						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
-						State = 243;
-						Match(T__34);
-						State = 244;
-						expression(6);
-						}
-						break;
-					case 4:
-						{
-						_localctx = new ExpressionContext(_parentctx, _parentState);
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 245;
-						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
-						State = 246;
-						Match(T__3);
-						State = 247;
-						expression(5);
-						}
-						break;
-					}
-					} 
-				}
-				State = 252;
+				State = 256;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,19,Context);
+				_la = TokenStream.LA(1);
 			}
 			}
 		}
@@ -2015,7 +2035,516 @@ public partial class RenpyParser : Parser {
 			ErrorHandler.Recover(this, re);
 		}
 		finally {
-			UnrollRecursionContexts(_parentctx);
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Logical_andContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_notContext[] logical_not() {
+			return GetRuleContexts<Logical_notContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_notContext logical_not(int i) {
+			return GetRuleContext<Logical_notContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] AND() { return GetTokens(RenpyParser.AND); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND(int i) {
+			return GetToken(RenpyParser.AND, i);
+		}
+		public Logical_andContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_logical_and; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterLogical_and(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitLogical_and(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLogical_and(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Logical_andContext logical_and() {
+		Logical_andContext _localctx = new Logical_andContext(Context, State);
+		EnterRule(_localctx, 56, RULE_logical_and);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 257;
+			logical_not();
+			State = 262;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==AND) {
+				{
+				{
+				State = 258;
+				Match(AND);
+				State = 259;
+				logical_not();
+				}
+				}
+				State = 264;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Logical_notContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(RenpyParser.NOT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public Logical_notContext logical_not() {
+			return GetRuleContext<Logical_notContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public RelationalContext relational() {
+			return GetRuleContext<RelationalContext>(0);
+		}
+		public Logical_notContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_logical_not; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterLogical_not(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitLogical_not(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLogical_not(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Logical_notContext logical_not() {
+		Logical_notContext _localctx = new Logical_notContext(Context, State);
+		EnterRule(_localctx, 58, RULE_logical_not);
+		try {
+			State = 268;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case NOT:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 265;
+				Match(NOT);
+				State = 266;
+				logical_not();
+				}
+				break;
+			case T__22:
+			case IDENT:
+			case STRING:
+			case NUMBER:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 267;
+				relational();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class RelationalContext : ParserRuleContext {
+		public IToken _LT;
+		public IList<IToken> _op = new List<IToken>();
+		public IToken _GT;
+		public IToken _LE;
+		public IToken _GE;
+		public IToken _EQ;
+		public IToken _NE;
+		public IToken _tset573;
+		[System.Diagnostics.DebuggerNonUserCode] public AdditiveContext[] additive() {
+			return GetRuleContexts<AdditiveContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public AdditiveContext additive(int i) {
+			return GetRuleContext<AdditiveContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LT() { return GetTokens(RenpyParser.LT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LT(int i) {
+			return GetToken(RenpyParser.LT, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] GT() { return GetTokens(RenpyParser.GT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GT(int i) {
+			return GetToken(RenpyParser.GT, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LE() { return GetTokens(RenpyParser.LE); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LE(int i) {
+			return GetToken(RenpyParser.LE, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] GE() { return GetTokens(RenpyParser.GE); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GE(int i) {
+			return GetToken(RenpyParser.GE, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] EQ() { return GetTokens(RenpyParser.EQ); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EQ(int i) {
+			return GetToken(RenpyParser.EQ, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] NE() { return GetTokens(RenpyParser.NE); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NE(int i) {
+			return GetToken(RenpyParser.NE, i);
+		}
+		public RelationalContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_relational; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterRelational(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitRelational(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRelational(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public RelationalContext relational() {
+		RelationalContext _localctx = new RelationalContext(Context, State);
+		EnterRule(_localctx, 60, RULE_relational);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 270;
+			additive();
+			State = 275;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 31267361914880L) != 0)) {
+				{
+				{
+				State = 271;
+				_localctx._tset573 = TokenStream.LT(1);
+				_la = TokenStream.LA(1);
+				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 31267361914880L) != 0)) ) {
+					_localctx._tset573 = ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				_localctx._op.Add(_localctx._tset573);
+				State = 272;
+				additive();
+				}
+				}
+				State = 277;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class AdditiveContext : ParserRuleContext {
+		public IToken _PLUS;
+		public IList<IToken> _op = new List<IToken>();
+		public IToken _MINUS;
+		public IToken _tset612;
+		[System.Diagnostics.DebuggerNonUserCode] public MultiplicativeContext[] multiplicative() {
+			return GetRuleContexts<MultiplicativeContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public MultiplicativeContext multiplicative(int i) {
+			return GetRuleContext<MultiplicativeContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] PLUS() { return GetTokens(RenpyParser.PLUS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS(int i) {
+			return GetToken(RenpyParser.PLUS, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] MINUS() { return GetTokens(RenpyParser.MINUS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUS(int i) {
+			return GetToken(RenpyParser.MINUS, i);
+		}
+		public AdditiveContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_additive; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterAdditive(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitAdditive(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAdditive(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public AdditiveContext additive() {
+		AdditiveContext _localctx = new AdditiveContext(Context, State);
+		EnterRule(_localctx, 62, RULE_additive);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 278;
+			multiplicative();
+			State = 283;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==PLUS || _la==MINUS) {
+				{
+				{
+				State = 279;
+				_localctx._tset612 = TokenStream.LT(1);
+				_la = TokenStream.LA(1);
+				if ( !(_la==PLUS || _la==MINUS) ) {
+					_localctx._tset612 = ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				_localctx._op.Add(_localctx._tset612);
+				State = 280;
+				multiplicative();
+				}
+				}
+				State = 285;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class MultiplicativeContext : ParserRuleContext {
+		public IToken _STAR;
+		public IList<IToken> _op = new List<IToken>();
+		public IToken _SLASH;
+		public IToken _tset635;
+		[System.Diagnostics.DebuggerNonUserCode] public PrimaryContext[] primary() {
+			return GetRuleContexts<PrimaryContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public PrimaryContext primary(int i) {
+			return GetRuleContext<PrimaryContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] STAR() { return GetTokens(RenpyParser.STAR); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR(int i) {
+			return GetToken(RenpyParser.STAR, i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] SLASH() { return GetTokens(RenpyParser.SLASH); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SLASH(int i) {
+			return GetToken(RenpyParser.SLASH, i);
+		}
+		public MultiplicativeContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_multiplicative; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterMultiplicative(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitMultiplicative(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMultiplicative(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public MultiplicativeContext multiplicative() {
+		MultiplicativeContext _localctx = new MultiplicativeContext(Context, State);
+		EnterRule(_localctx, 64, RULE_multiplicative);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 286;
+			primary();
+			State = 291;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==STAR || _la==SLASH) {
+				{
+				{
+				State = 287;
+				_localctx._tset635 = TokenStream.LT(1);
+				_la = TokenStream.LA(1);
+				if ( !(_la==STAR || _la==SLASH) ) {
+					_localctx._tset635 = ErrorHandler.RecoverInline(this);
+				}
+				else {
+					ErrorHandler.ReportMatch(this);
+				    Consume();
+				}
+				_localctx._op.Add(_localctx._tset635);
+				State = 288;
+				primary();
+				}
+				}
+				State = 293;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class PrimaryContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public LiteralContext literal() {
+			return GetRuleContext<LiteralContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		public PrimaryContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_primary; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.EnterPrimary(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRenpyListener typedListener = listener as IRenpyListener;
+			if (typedListener != null) typedListener.ExitPrimary(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRenpyVisitor<TResult> typedVisitor = visitor as IRenpyVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrimary(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public PrimaryContext primary() {
+		PrimaryContext _localctx = new PrimaryContext(Context, State);
+		EnterRule(_localctx, 66, RULE_primary);
+		try {
+			State = 299;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case IDENT:
+			case STRING:
+			case NUMBER:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 294;
+				literal();
+				}
+				break;
+			case T__22:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 295;
+				Match(T__22);
+				State = 296;
+				expression();
+				State = 297;
+				Match(T__24);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
 		}
 		return _localctx;
 	}
@@ -2050,14 +2579,14 @@ public partial class RenpyParser : Parser {
 	[RuleVersion(0)]
 	public LiteralContext literal() {
 		LiteralContext _localctx = new LiteralContext(Context, State);
-		EnterRule(_localctx, 52, RULE_literal);
+		EnterRule(_localctx, 68, RULE_literal);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 253;
+			State = 301;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 481036337152L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 35187593314304L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -2077,104 +2606,103 @@ public partial class RenpyParser : Parser {
 		return _localctx;
 	}
 
-	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
-		switch (ruleIndex) {
-		case 25: return expression_sempred((ExpressionContext)_localctx, predIndex);
-		}
-		return true;
-	}
-	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 0: return Precpred(Context, 7);
-		case 1: return Precpred(Context, 6);
-		case 2: return Precpred(Context, 5);
-		case 3: return Precpred(Context, 4);
-		}
-		return true;
-	}
-
 	private static int[] _serializedATN = {
-		4,1,53,256,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,60,304,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,
-		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,1,0,1,0,5,0,57,8,0,10,
-		0,12,0,60,9,0,1,0,5,0,63,8,0,10,0,12,0,66,9,0,1,1,1,1,1,1,1,1,1,1,1,1,
-		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,85,8,1,1,2,1,2,1,2,3,2,
-		90,8,2,1,2,1,2,1,2,1,2,1,2,3,2,97,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,4,
-		1,4,1,4,1,4,3,4,110,8,4,1,5,1,5,1,5,1,6,1,6,1,6,1,6,3,6,119,8,6,1,7,1,
-		7,1,7,3,7,124,8,7,1,8,1,8,1,8,3,8,129,8,8,1,9,1,9,1,9,3,9,134,8,9,1,10,
-		1,10,1,10,3,10,139,8,10,1,11,1,11,1,11,3,11,144,8,11,1,12,1,12,1,12,1,
-		12,5,12,150,8,12,10,12,12,12,153,9,12,1,12,1,12,1,13,1,13,1,13,1,13,1,
-		13,1,13,1,14,1,14,1,14,1,14,1,14,1,15,1,15,1,16,1,16,1,16,1,17,1,17,1,
-		18,1,18,1,19,1,19,1,19,1,19,5,19,181,8,19,10,19,12,19,184,9,19,1,19,1,
-		19,1,20,1,20,3,20,190,8,20,1,20,1,20,1,21,1,21,1,21,1,21,1,21,1,21,1,21,
-		5,21,201,8,21,10,21,12,21,204,9,21,1,21,3,21,207,8,21,1,22,1,22,1,22,1,
-		22,1,22,1,22,1,22,1,23,1,23,1,23,1,23,1,23,1,23,1,24,1,24,1,24,1,24,1,
-		24,1,25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,3,25,235,8,25,1,25,1,25,1,25,
-		1,25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,1,25,5,25,249,8,25,10,25,12,25,
-		252,9,25,1,26,1,26,1,26,0,1,50,27,0,2,4,6,8,10,12,14,16,18,20,22,24,26,
-		28,30,32,34,36,38,40,42,44,46,48,50,52,0,3,1,0,8,10,1,0,30,33,1,0,36,38,
-		267,0,54,1,0,0,0,2,84,1,0,0,0,4,86,1,0,0,0,6,98,1,0,0,0,8,104,1,0,0,0,
-		10,111,1,0,0,0,12,114,1,0,0,0,14,120,1,0,0,0,16,125,1,0,0,0,18,130,1,0,
-		0,0,20,135,1,0,0,0,22,140,1,0,0,0,24,145,1,0,0,0,26,156,1,0,0,0,28,162,
-		1,0,0,0,30,167,1,0,0,0,32,169,1,0,0,0,34,172,1,0,0,0,36,174,1,0,0,0,38,
-		176,1,0,0,0,40,189,1,0,0,0,42,193,1,0,0,0,44,208,1,0,0,0,46,215,1,0,0,
-		0,48,221,1,0,0,0,50,234,1,0,0,0,52,253,1,0,0,0,54,64,3,2,1,0,55,57,5,39,
-		0,0,56,55,1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,61,1,0,
-		0,0,60,58,1,0,0,0,61,63,3,2,1,0,62,58,1,0,0,0,63,66,1,0,0,0,64,62,1,0,
-		0,0,64,65,1,0,0,0,65,1,1,0,0,0,66,64,1,0,0,0,67,85,3,4,2,0,68,85,3,6,3,
-		0,69,85,3,8,4,0,70,85,3,10,5,0,71,85,3,12,6,0,72,85,3,14,7,0,73,85,3,16,
-		8,0,74,85,3,18,9,0,75,85,3,24,12,0,76,85,3,28,14,0,77,85,3,20,10,0,78,
-		85,3,22,11,0,79,85,3,30,15,0,80,85,3,48,24,0,81,85,3,32,16,0,82,85,3,34,
-		17,0,83,85,3,42,21,0,84,67,1,0,0,0,84,68,1,0,0,0,84,69,1,0,0,0,84,70,1,
-		0,0,0,84,71,1,0,0,0,84,72,1,0,0,0,84,73,1,0,0,0,84,74,1,0,0,0,84,75,1,
-		0,0,0,84,76,1,0,0,0,84,77,1,0,0,0,84,78,1,0,0,0,84,79,1,0,0,0,84,80,1,
-		0,0,0,84,81,1,0,0,0,84,82,1,0,0,0,84,83,1,0,0,0,85,3,1,0,0,0,86,87,5,1,
-		0,0,87,89,5,36,0,0,88,90,3,38,19,0,89,88,1,0,0,0,89,90,1,0,0,0,90,91,1,
-		0,0,0,91,96,5,2,0,0,92,93,5,42,0,0,93,94,3,0,0,0,94,95,5,43,0,0,95,97,
-		1,0,0,0,96,92,1,0,0,0,96,97,1,0,0,0,97,5,1,0,0,0,98,99,5,3,0,0,99,100,
-		5,36,0,0,100,101,5,4,0,0,101,102,5,36,0,0,102,103,3,38,19,0,103,7,1,0,
-		0,0,104,105,5,5,0,0,105,106,5,6,0,0,106,109,5,36,0,0,107,108,5,7,0,0,108,
-		110,7,0,0,0,109,107,1,0,0,0,109,110,1,0,0,0,110,9,1,0,0,0,111,112,5,11,
-		0,0,112,113,5,38,0,0,113,11,1,0,0,0,114,115,5,12,0,0,115,118,5,37,0,0,
-		116,117,5,13,0,0,117,119,5,38,0,0,118,116,1,0,0,0,118,119,1,0,0,0,119,
-		13,1,0,0,0,120,123,5,14,0,0,121,122,5,15,0,0,122,124,5,38,0,0,123,121,
-		1,0,0,0,123,124,1,0,0,0,124,15,1,0,0,0,125,126,5,16,0,0,126,128,5,36,0,
-		0,127,129,3,38,19,0,128,127,1,0,0,0,128,129,1,0,0,0,129,17,1,0,0,0,130,
-		131,5,17,0,0,131,133,5,36,0,0,132,134,3,38,19,0,133,132,1,0,0,0,133,134,
-		1,0,0,0,134,19,1,0,0,0,135,136,5,18,0,0,136,138,5,37,0,0,137,139,3,38,
-		19,0,138,137,1,0,0,0,138,139,1,0,0,0,139,21,1,0,0,0,140,141,5,19,0,0,141,
-		143,5,37,0,0,142,144,3,38,19,0,143,142,1,0,0,0,143,144,1,0,0,0,144,23,
-		1,0,0,0,145,146,5,20,0,0,146,147,5,2,0,0,147,151,5,42,0,0,148,150,3,26,
-		13,0,149,148,1,0,0,0,150,153,1,0,0,0,151,149,1,0,0,0,151,152,1,0,0,0,152,
-		154,1,0,0,0,153,151,1,0,0,0,154,155,5,43,0,0,155,25,1,0,0,0,156,157,5,
-		37,0,0,157,158,5,2,0,0,158,159,5,42,0,0,159,160,3,0,0,0,160,161,5,43,0,
-		0,161,27,1,0,0,0,162,163,5,21,0,0,163,164,5,36,0,0,164,165,5,4,0,0,165,
-		166,3,50,25,0,166,29,1,0,0,0,167,168,5,22,0,0,168,31,1,0,0,0,169,170,3,
-		36,18,0,170,171,5,37,0,0,171,33,1,0,0,0,172,173,5,37,0,0,173,35,1,0,0,
-		0,174,175,5,36,0,0,175,37,1,0,0,0,176,177,5,23,0,0,177,182,3,40,20,0,178,
-		179,5,24,0,0,179,181,3,40,20,0,180,178,1,0,0,0,181,184,1,0,0,0,182,180,
-		1,0,0,0,182,183,1,0,0,0,183,185,1,0,0,0,184,182,1,0,0,0,185,186,5,25,0,
-		0,186,39,1,0,0,0,187,188,5,36,0,0,188,190,5,4,0,0,189,187,1,0,0,0,189,
-		190,1,0,0,0,190,191,1,0,0,0,191,192,3,50,25,0,192,41,1,0,0,0,193,194,5,
-		26,0,0,194,195,3,50,25,0,195,196,5,2,0,0,196,197,5,42,0,0,197,198,3,0,
-		0,0,198,202,5,43,0,0,199,201,3,44,22,0,200,199,1,0,0,0,201,204,1,0,0,0,
-		202,200,1,0,0,0,202,203,1,0,0,0,203,206,1,0,0,0,204,202,1,0,0,0,205,207,
-		3,46,23,0,206,205,1,0,0,0,206,207,1,0,0,0,207,43,1,0,0,0,208,209,5,27,
-		0,0,209,210,3,50,25,0,210,211,5,2,0,0,211,212,5,42,0,0,212,213,3,0,0,0,
-		213,214,5,43,0,0,214,45,1,0,0,0,215,216,5,28,0,0,216,217,5,2,0,0,217,218,
-		5,42,0,0,218,219,3,0,0,0,219,220,5,43,0,0,220,47,1,0,0,0,221,222,5,29,
-		0,0,222,223,5,36,0,0,223,224,5,4,0,0,224,225,3,50,25,0,225,49,1,0,0,0,
-		226,227,6,25,-1,0,227,235,3,52,26,0,228,235,5,52,0,0,229,235,5,53,0,0,
-		230,231,5,23,0,0,231,232,3,50,25,0,232,233,5,25,0,0,233,235,1,0,0,0,234,
-		226,1,0,0,0,234,228,1,0,0,0,234,229,1,0,0,0,234,230,1,0,0,0,235,250,1,
-		0,0,0,236,237,10,7,0,0,237,238,7,1,0,0,238,249,3,50,25,8,239,240,10,6,
-		0,0,240,241,5,34,0,0,241,249,3,50,25,7,242,243,10,5,0,0,243,244,5,35,0,
-		0,244,249,3,50,25,6,245,246,10,4,0,0,246,247,5,4,0,0,247,249,3,50,25,5,
-		248,236,1,0,0,0,248,239,1,0,0,0,248,242,1,0,0,0,248,245,1,0,0,0,249,252,
-		1,0,0,0,250,248,1,0,0,0,250,251,1,0,0,0,251,51,1,0,0,0,252,250,1,0,0,0,
-		253,254,7,2,0,0,254,53,1,0,0,0,20,58,64,84,89,96,109,118,123,128,133,138,
-		143,151,182,189,202,206,234,248,250
+		2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,
+		2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,7,33,2,34,7,34,1,0,1,0,5,
+		0,73,8,0,10,0,12,0,76,9,0,1,0,5,0,79,8,0,10,0,12,0,82,9,0,1,1,1,1,1,1,
+		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,102,8,
+		1,1,2,1,2,1,2,1,3,1,3,1,3,3,3,110,8,3,1,3,1,3,1,3,1,3,1,3,3,3,117,8,3,
+		1,4,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,3,5,129,8,5,1,6,1,6,1,6,1,7,1,
+		7,1,7,1,7,3,7,138,8,7,1,8,1,8,1,8,1,8,3,8,144,8,8,1,9,1,9,1,9,3,9,149,
+		8,9,1,10,1,10,1,10,3,10,154,8,10,1,11,1,11,1,11,1,11,1,12,1,12,1,12,3,
+		12,163,8,12,1,13,1,13,1,13,1,13,5,13,169,8,13,10,13,12,13,172,9,13,1,13,
+		1,13,1,14,1,14,1,14,1,14,1,14,1,14,1,15,1,15,1,15,1,15,1,15,1,16,1,16,
+		1,17,1,17,1,17,1,18,1,18,1,19,1,19,1,20,1,20,1,20,1,20,5,20,200,8,20,10,
+		20,12,20,203,9,20,1,20,1,20,1,21,1,21,3,21,209,8,21,1,21,1,21,1,22,1,22,
+		1,22,1,22,1,22,1,22,1,22,5,22,220,8,22,10,22,12,22,223,9,22,1,22,3,22,
+		226,8,22,1,23,1,23,1,23,1,23,1,23,1,23,1,23,1,24,1,24,1,24,1,24,1,24,1,
+		24,1,25,1,25,1,25,1,25,1,25,1,26,1,26,3,26,248,8,26,1,27,1,27,1,27,5,27,
+		253,8,27,10,27,12,27,256,9,27,1,28,1,28,1,28,5,28,261,8,28,10,28,12,28,
+		264,9,28,1,29,1,29,1,29,3,29,269,8,29,1,30,1,30,1,30,5,30,274,8,30,10,
+		30,12,30,277,9,30,1,31,1,31,1,31,5,31,282,8,31,10,31,12,31,285,9,31,1,
+		32,1,32,1,32,5,32,290,8,32,10,32,12,32,293,9,32,1,33,1,33,1,33,1,33,1,
+		33,3,33,300,8,33,1,34,1,34,1,34,0,0,35,0,2,4,6,8,10,12,14,16,18,20,22,
+		24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,0,
+		5,1,0,8,10,2,0,36,38,42,44,1,0,32,33,1,0,34,35,2,0,30,31,45,45,308,0,70,
+		1,0,0,0,2,101,1,0,0,0,4,103,1,0,0,0,6,106,1,0,0,0,8,118,1,0,0,0,10,124,
+		1,0,0,0,12,130,1,0,0,0,14,133,1,0,0,0,16,139,1,0,0,0,18,145,1,0,0,0,20,
+		150,1,0,0,0,22,155,1,0,0,0,24,159,1,0,0,0,26,164,1,0,0,0,28,175,1,0,0,
+		0,30,181,1,0,0,0,32,186,1,0,0,0,34,188,1,0,0,0,36,191,1,0,0,0,38,193,1,
+		0,0,0,40,195,1,0,0,0,42,208,1,0,0,0,44,212,1,0,0,0,46,227,1,0,0,0,48,234,
+		1,0,0,0,50,240,1,0,0,0,52,247,1,0,0,0,54,249,1,0,0,0,56,257,1,0,0,0,58,
+		268,1,0,0,0,60,270,1,0,0,0,62,278,1,0,0,0,64,286,1,0,0,0,66,299,1,0,0,
+		0,68,301,1,0,0,0,70,80,3,2,1,0,71,73,5,46,0,0,72,71,1,0,0,0,73,76,1,0,
+		0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,77,1,0,0,0,76,74,1,0,0,0,77,79,3,2,
+		1,0,78,74,1,0,0,0,79,82,1,0,0,0,80,78,1,0,0,0,80,81,1,0,0,0,81,1,1,0,0,
+		0,82,80,1,0,0,0,83,102,3,6,3,0,84,102,3,8,4,0,85,102,3,10,5,0,86,102,3,
+		12,6,0,87,102,3,14,7,0,88,102,3,16,8,0,89,102,3,18,9,0,90,102,3,20,10,
+		0,91,102,3,26,13,0,92,102,3,30,15,0,93,102,3,22,11,0,94,102,3,24,12,0,
+		95,102,3,32,16,0,96,102,3,50,25,0,97,102,3,34,17,0,98,102,3,36,18,0,99,
+		102,3,44,22,0,100,102,3,4,2,0,101,83,1,0,0,0,101,84,1,0,0,0,101,85,1,0,
+		0,0,101,86,1,0,0,0,101,87,1,0,0,0,101,88,1,0,0,0,101,89,1,0,0,0,101,90,
+		1,0,0,0,101,91,1,0,0,0,101,92,1,0,0,0,101,93,1,0,0,0,101,94,1,0,0,0,101,
+		95,1,0,0,0,101,96,1,0,0,0,101,97,1,0,0,0,101,98,1,0,0,0,101,99,1,0,0,0,
+		101,100,1,0,0,0,102,3,1,0,0,0,103,104,5,1,0,0,104,105,3,52,26,0,105,5,
+		1,0,0,0,106,107,5,2,0,0,107,109,5,30,0,0,108,110,3,40,20,0,109,108,1,0,
+		0,0,109,110,1,0,0,0,110,111,1,0,0,0,111,116,5,3,0,0,112,113,5,49,0,0,113,
+		114,3,0,0,0,114,115,5,50,0,0,115,117,1,0,0,0,116,112,1,0,0,0,116,117,1,
+		0,0,0,117,7,1,0,0,0,118,119,5,4,0,0,119,120,5,30,0,0,120,121,5,5,0,0,121,
+		122,5,30,0,0,122,123,3,40,20,0,123,9,1,0,0,0,124,125,5,6,0,0,125,128,5,
+		30,0,0,126,127,5,7,0,0,127,129,7,0,0,0,128,126,1,0,0,0,128,129,1,0,0,0,
+		129,11,1,0,0,0,130,131,5,11,0,0,131,132,5,45,0,0,132,13,1,0,0,0,133,134,
+		5,12,0,0,134,137,5,30,0,0,135,136,5,13,0,0,136,138,5,45,0,0,137,135,1,
+		0,0,0,137,138,1,0,0,0,138,15,1,0,0,0,139,140,5,14,0,0,140,143,5,30,0,0,
+		141,142,5,15,0,0,142,144,5,45,0,0,143,141,1,0,0,0,143,144,1,0,0,0,144,
+		17,1,0,0,0,145,146,5,16,0,0,146,148,5,30,0,0,147,149,3,40,20,0,148,147,
+		1,0,0,0,148,149,1,0,0,0,149,19,1,0,0,0,150,151,5,17,0,0,151,153,5,30,0,
+		0,152,154,3,40,20,0,153,152,1,0,0,0,153,154,1,0,0,0,154,21,1,0,0,0,155,
+		156,5,18,0,0,156,157,5,30,0,0,157,158,5,30,0,0,158,23,1,0,0,0,159,160,
+		5,19,0,0,160,162,5,31,0,0,161,163,3,40,20,0,162,161,1,0,0,0,162,163,1,
+		0,0,0,163,25,1,0,0,0,164,165,5,20,0,0,165,166,5,3,0,0,166,170,5,49,0,0,
+		167,169,3,28,14,0,168,167,1,0,0,0,169,172,1,0,0,0,170,168,1,0,0,0,170,
+		171,1,0,0,0,171,173,1,0,0,0,172,170,1,0,0,0,173,174,5,50,0,0,174,27,1,
+		0,0,0,175,176,5,31,0,0,176,177,5,3,0,0,177,178,5,49,0,0,178,179,3,0,0,
+		0,179,180,5,50,0,0,180,29,1,0,0,0,181,182,5,21,0,0,182,183,5,30,0,0,183,
+		184,5,5,0,0,184,185,3,52,26,0,185,31,1,0,0,0,186,187,5,22,0,0,187,33,1,
+		0,0,0,188,189,3,38,19,0,189,190,5,31,0,0,190,35,1,0,0,0,191,192,5,31,0,
+		0,192,37,1,0,0,0,193,194,5,30,0,0,194,39,1,0,0,0,195,196,5,23,0,0,196,
+		201,3,42,21,0,197,198,5,24,0,0,198,200,3,42,21,0,199,197,1,0,0,0,200,203,
+		1,0,0,0,201,199,1,0,0,0,201,202,1,0,0,0,202,204,1,0,0,0,203,201,1,0,0,
+		0,204,205,5,25,0,0,205,41,1,0,0,0,206,207,5,30,0,0,207,209,5,5,0,0,208,
+		206,1,0,0,0,208,209,1,0,0,0,209,210,1,0,0,0,210,211,3,52,26,0,211,43,1,
+		0,0,0,212,213,5,26,0,0,213,214,3,52,26,0,214,215,5,3,0,0,215,216,5,49,
+		0,0,216,217,3,0,0,0,217,221,5,50,0,0,218,220,3,46,23,0,219,218,1,0,0,0,
+		220,223,1,0,0,0,221,219,1,0,0,0,221,222,1,0,0,0,222,225,1,0,0,0,223,221,
+		1,0,0,0,224,226,3,48,24,0,225,224,1,0,0,0,225,226,1,0,0,0,226,45,1,0,0,
+		0,227,228,5,27,0,0,228,229,3,52,26,0,229,230,5,3,0,0,230,231,5,49,0,0,
+		231,232,3,0,0,0,232,233,5,50,0,0,233,47,1,0,0,0,234,235,5,28,0,0,235,236,
+		5,3,0,0,236,237,5,49,0,0,237,238,3,0,0,0,238,239,5,50,0,0,239,49,1,0,0,
+		0,240,241,5,29,0,0,241,242,5,30,0,0,242,243,5,5,0,0,243,244,3,52,26,0,
+		244,51,1,0,0,0,245,248,3,62,31,0,246,248,3,54,27,0,247,245,1,0,0,0,247,
+		246,1,0,0,0,248,53,1,0,0,0,249,254,3,56,28,0,250,251,5,41,0,0,251,253,
+		3,56,28,0,252,250,1,0,0,0,253,256,1,0,0,0,254,252,1,0,0,0,254,255,1,0,
+		0,0,255,55,1,0,0,0,256,254,1,0,0,0,257,262,3,58,29,0,258,259,5,40,0,0,
+		259,261,3,58,29,0,260,258,1,0,0,0,261,264,1,0,0,0,262,260,1,0,0,0,262,
+		263,1,0,0,0,263,57,1,0,0,0,264,262,1,0,0,0,265,266,5,39,0,0,266,269,3,
+		58,29,0,267,269,3,60,30,0,268,265,1,0,0,0,268,267,1,0,0,0,269,59,1,0,0,
+		0,270,275,3,62,31,0,271,272,7,1,0,0,272,274,3,62,31,0,273,271,1,0,0,0,
+		274,277,1,0,0,0,275,273,1,0,0,0,275,276,1,0,0,0,276,61,1,0,0,0,277,275,
+		1,0,0,0,278,283,3,64,32,0,279,280,7,2,0,0,280,282,3,64,32,0,281,279,1,
+		0,0,0,282,285,1,0,0,0,283,281,1,0,0,0,283,284,1,0,0,0,284,63,1,0,0,0,285,
+		283,1,0,0,0,286,291,3,66,33,0,287,288,7,3,0,0,288,290,3,66,33,0,289,287,
+		1,0,0,0,290,293,1,0,0,0,291,289,1,0,0,0,291,292,1,0,0,0,292,65,1,0,0,0,
+		293,291,1,0,0,0,294,300,3,68,34,0,295,296,5,23,0,0,296,297,3,52,26,0,297,
+		298,5,25,0,0,298,300,1,0,0,0,299,294,1,0,0,0,299,295,1,0,0,0,300,67,1,
+		0,0,0,301,302,7,4,0,0,302,69,1,0,0,0,24,74,80,101,109,116,128,137,143,
+		148,153,162,170,201,208,221,225,247,254,262,268,275,283,291,299
 	};
 
 	public static readonly ATN _ATN =

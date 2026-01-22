@@ -51,6 +51,16 @@ public interface IRenpyListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStatement([NotNull] RenpyParser.StatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.debug_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDebug_def([NotNull] RenpyParser.Debug_defContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.debug_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDebug_def([NotNull] RenpyParser.Debug_defContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="RenpyParser.label_def"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -290,6 +300,76 @@ public interface IRenpyListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitExpression([NotNull] RenpyParser.ExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.logical_or"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLogical_or([NotNull] RenpyParser.Logical_orContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.logical_or"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLogical_or([NotNull] RenpyParser.Logical_orContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.logical_and"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLogical_and([NotNull] RenpyParser.Logical_andContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.logical_and"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLogical_and([NotNull] RenpyParser.Logical_andContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.logical_not"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLogical_not([NotNull] RenpyParser.Logical_notContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.logical_not"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLogical_not([NotNull] RenpyParser.Logical_notContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.relational"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRelational([NotNull] RenpyParser.RelationalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.relational"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRelational([NotNull] RenpyParser.RelationalContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.additive"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAdditive([NotNull] RenpyParser.AdditiveContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.additive"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAdditive([NotNull] RenpyParser.AdditiveContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.multiplicative"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMultiplicative([NotNull] RenpyParser.MultiplicativeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.multiplicative"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMultiplicative([NotNull] RenpyParser.MultiplicativeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RenpyParser.primary"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPrimary([NotNull] RenpyParser.PrimaryContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RenpyParser.primary"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPrimary([NotNull] RenpyParser.PrimaryContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RenpyParser.literal"/>.
 	/// </summary>

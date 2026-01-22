@@ -19,7 +19,6 @@ namespace RenDisco.Commands
 
         public virtual Command CreateCommand(RenDisco.Instruction command)
         {
-            Console.WriteLine(command.ToString());
             switch (command)
             {
                 case Label label:
@@ -36,8 +35,6 @@ namespace RenDisco.Commands
                     return CreateDefineCommand(define);
                 case IfCondition ifCondition:
                     return CreateIfConditionBlockCommand(ifCondition);
-                case ElifCondition elifCondition:
-                    return CreateElIfConditionalBlockCommand(elifCondition);
                 case Menu menu:
                     return CreateExecuteMenuCommand(menu);
                 case Jump jump:
@@ -50,6 +47,8 @@ namespace RenDisco.Commands
                     return CreateStopMusicCommand(stopMusic);
                 case Hide hide:
                     return CreateHideCommand(hide);
+                case DebugLog debug:
+                    return CreateDebugCommand(debug);
                 default:
                     Console.WriteLine($"Unknown command type encountered: {command.Type}");
                     break;
@@ -72,14 +71,9 @@ namespace RenDisco.Commands
             return new MenuCommand(menu);
         }
 
-        protected virtual ElIfConditionalBlockCommand CreateElIfConditionalBlockCommand(ElifCondition elifCondition)
-        {
-            return new ElIfConditionalBlockCommand(elifCondition);
-        }
-
         protected virtual IfConditionBlockCommand CreateIfConditionBlockCommand(IfCondition ifCondition)
         {
-            return new IfConditionBlockCommand(ifCondition);
+            return new IfConditionBlockCommand(ifCondition, Storage);
         }
 
         protected virtual DefineCommand CreateDefineCommand(Define define) 
@@ -124,6 +118,11 @@ namespace RenDisco.Commands
         protected virtual PlayMusicCommand CreatePlayMusicCommand(PlayMusic playMusic)
         {
             return new PlayMusicCommand(playMusic);
+        }
+
+        protected virtual DebugCommand CreateDebugCommand(DebugLog debug)
+        {
+            return new DebugCommand(debug, Storage);
         }
     }
 }
