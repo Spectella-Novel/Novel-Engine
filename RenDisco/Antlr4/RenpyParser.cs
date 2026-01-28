@@ -66,8 +66,8 @@ public partial class RenpyParser : Parser {
 
 	private static readonly string[] _LiteralNames = {
 		null, "'debug'", "'label'", "':'", "'define'", "'='", "'scene'", "'with'", 
-		"'dissolve'", "'fade'", "'crossfade'", "'pause'", "'play music'", "'fadein'", 
-		"'stop music'", "'fadeout'", "'jump'", "'call'", "'show'", "'hide'", "'menu'", 
+		"'dissolve'", "'fade'", "'crossfade'", "'pause'", "'play sound'", "'fadein'", 
+		"'stop sound'", "'fadeout'", "'jump'", "'call'", "'show'", "'hide'", "'menu'", 
 		"'default'", "'return'", "'('", "','", "')'", "'if'", "'elif'", "'else'", 
 		"'$'", null, null, "'+'", "'-'", "'*'", "'/'", "'<'", "'>'", "'=='", "'not'", 
 		"'and'", "'or'", "'!='", "'<='", "'>='"

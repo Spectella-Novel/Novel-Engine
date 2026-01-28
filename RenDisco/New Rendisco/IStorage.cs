@@ -34,7 +34,7 @@ namespace RenDisco
 
     public static class VariableType
     {
-        public const string  STRING = "string";
+        public const string STRING = "string";
         public const string BOOLEAN = "boolean";
         public const string NUMBER = "number";
     }

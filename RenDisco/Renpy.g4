@@ -83,11 +83,11 @@ pause_def:
   ;
 
 play_music_def:
-  'play music' IDENT ('fadein' NUMBER)?
+  'play sound' IDENT ('fadein' NUMBER)?
   ;
 
 stop_music_def:
-  'stop music' IDENT ('fadeout' NUMBER)?
+  'stop sound' IDENT ('fadeout' NUMBER)?
   ;
 
 jump_def:
