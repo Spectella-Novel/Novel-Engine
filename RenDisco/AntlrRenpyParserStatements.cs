@@ -280,10 +280,17 @@ namespace RenDisco
 
         public override object VisitShow_def([NotNull] RenpyParser.Show_defContext context)
         {
-            return new Show 
-            { 
+            return new Show
+            {
                 Character = context.IDENT(0).ToString(),
-                Emotion = context.IDENT(1).ToString(),//Добавить дефортную эмоцию
+                Emotion = context.IDENT(1)?.ToString(), // emotion is optional
+            };
+        }
+        public override object VisitHide_def([NotNull] Hide_defContext context)
+        {
+            return new Hide
+            {
+                Character = context.IDENT().ToString(),
             };
         }
         public override object VisitDialogue([NotNull] RenpyParser.DialogueContext context)

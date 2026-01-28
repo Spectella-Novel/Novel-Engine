@@ -99,11 +99,11 @@ call_def:
   ;
 
 show_def:
-  'show' IDENT IDENT
+  'show' IDENT (IDENT)?
   ;
 
 hide_def:
-  'hide' STRING (arguments)?
+  'hide' IDENT (arguments)?
   ;
   
 menu_def:

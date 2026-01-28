@@ -295,12 +295,12 @@ namespace RenDisco {
     public class Hide : Instruction
     {
         public override string Type => "hide";
-        
+
         /// <summary>
         /// Gets or sets the image to be hidden.
         /// </summary>
-        public string Image { get; set; }
-        
+        public string Character { get; set; }
+
         /// <summary>
         /// Gets or sets the transition effect for hiding the image.
         /// </summary>
