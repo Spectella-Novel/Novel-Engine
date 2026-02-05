@@ -107,7 +107,7 @@ hide_def:
   ;
   
 menu_def:
-  'menu' ':'
+  'menu' (character_ref)? STRING ':'
   INDENT
   (menu_option)*
   DEDENT

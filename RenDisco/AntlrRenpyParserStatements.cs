@@ -251,6 +251,10 @@ namespace RenDisco
         public override object VisitMenu_def([NotNull] RenpyParser.Menu_defContext context)
         {
             var menu = new Menu();
+
+            menu.Character = context.character_ref()?.ToString();
+            menu.Text = context.STRING().ToString();
+
             foreach (var optionContext in context.menu_option())
             {
                 menu.Choices.Add((MenuChoice)Visit(optionContext));

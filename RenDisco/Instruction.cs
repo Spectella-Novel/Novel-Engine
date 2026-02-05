@@ -105,6 +105,8 @@ namespace RenDisco {
     {
         public override string Type => "menu";
         
+        public string? Character;
+        public string Text;
         /// <summary>
         /// Gets or sets the list of choices in the menu.
         /// </summary>
