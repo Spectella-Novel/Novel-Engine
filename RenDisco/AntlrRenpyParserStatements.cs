@@ -252,7 +252,7 @@ namespace RenDisco
         {
             var menu = new Menu();
 
-            menu.Character = context.character_ref()?.ToString();
+            menu.Character = context.character_ref()?.IDENT().ToString();
             menu.Text = context.STRING().ToString();
 
             foreach (var optionContext in context.menu_option())
