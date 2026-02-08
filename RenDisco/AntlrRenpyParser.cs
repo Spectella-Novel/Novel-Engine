@@ -37,6 +37,7 @@ namespace RenDisco
             RenpyLexer lexer = new RenpyLexer(inputStream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             RenpyParser parser = new RenpyParser(tokens);
+
             var context = parser.block();
 
             // Evaluate the parsed tree.
@@ -50,11 +51,31 @@ namespace RenDisco
 
         public override object VisitBlock([NotNull] RenpyParser.BlockContext context)
         {
-            List<Instruction> commands = context.statement()
-                .Select(statement => (Instruction)Visit(statement))
-                .Where(command => command != null)
-                .ToList();
+            List<Instruction> commands = new List<Instruction>();
+            var array = context.statement();
+            for (int i = 0; i < array.Length; i++)
+            {
+                var statement = array[i];
+                if(statement.GetText().Length == 0)
+                {
+                    Console.WriteLine(1);
+                    continue;
+                }
+                try
+                {
+                    Instruction command = (Instruction)Visit(statement);
+                    if (command != null)
+                    {
+                        commands.Add(command);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error in lines: " + i + '\n' + statement.GetText() + ex.Message);
+                    throw;
+                }
 
+            }
             return commands;
         }
     }

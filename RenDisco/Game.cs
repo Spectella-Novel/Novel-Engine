@@ -62,8 +62,8 @@ namespace RenDisco {
 
         public async UniTaskVoid Workflow()
         {
-            //try
-            //{
+            try
+            {
                 var instructions = _instructionProcessor.Start();
                 while (_instructionProcessor.IsRunning() && instructions != null)
                 {
@@ -76,11 +76,11 @@ namespace RenDisco {
                 {
                     Debug.LogError("Unexpected behavior instruction equals null");
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.Log(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Ошибка в строке: " + _instructionProcessor.Line + '\n' + ex.Message);
+            }
 
 
         }

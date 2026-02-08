@@ -30,6 +30,7 @@ namespace RenDisco
 
         public override object VisitDefine_def([NotNull] RenpyParser.Define_defContext context)
         {
+            
             string valueName = context.IDENT(0).ToString();
             string type = context.IDENT(1).ToString();
             var pairs = new ArgumentsExpression();

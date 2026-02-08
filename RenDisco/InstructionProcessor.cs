@@ -14,6 +14,7 @@ namespace RenDisco
         private List<Instruction> _allCommands;
         private Stack<InstructionContext> _callStack;
         private bool _running;
+        public int Line => _callStack.Select(ctx => ctx.InstructionCounter).Sum() + _instructionContext.InstructionCounter;
         /// <summary>
         /// Constructor for the play execution environment.
         /// </summary>
