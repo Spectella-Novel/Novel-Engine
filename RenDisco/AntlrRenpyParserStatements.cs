@@ -5,9 +5,6 @@ using System.Linq;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using Unity.Plastic.Antlr3.Runtime.Tree;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-using UnityEngine.TerrainTools;
 using static RenpyParser;
 
 namespace RenDisco

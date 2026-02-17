@@ -138,7 +138,7 @@ character_ref:
   ;
 
 arguments:
-  '(' argument (',' argument)* ')'
+  '(' argument  ((INDENT)?',' argument (DEDENT)?)* ')'
   ;
 
 argument:
@@ -232,8 +232,8 @@ NUMBER:
   ;
 
 NL:
-  ('\r'? '\n' ' '*); // Note the ' '*
+  ('\r'? '\n' '\t'* ' '*); // Note the ' '*
 
-WS: [ \t]+ -> skip;
+WS: [ ]+ -> skip;
 
 LINE_COMMENT: '#' ~[\r\n]* -> skip;
